@@ -49,16 +49,16 @@ kotlin {
             dependsOn(iosMain)
         }
 
-        val nativeDarwinMain by creating {
+        val macosCommonMain by creating {
             dependsOn(commonMain)
         }
 
         val macosArm64Main by getting {
-            dependsOn(nativeDarwinMain)
+            dependsOn(macosCommonMain)
         }
 
         val macosX64Main by getting {
-            dependsOn(nativeDarwinMain)
+            dependsOn(macosCommonMain)
         }
     }
 }
