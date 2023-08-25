@@ -18,7 +18,7 @@ dependencies {
 
 ## `bundled`
 
-The `bundled` module provides an implementations of the `datadog` module and pulls in (transitively)
+The `bundled` module provides implementations of the `datadog` module and pulls in (transitively)
 the Datadog libraries. Useful for applications/libraries that don't yet have Datadog integrated and
 want to add a "batteries included" Datadog solution.
 
