@@ -1,0 +1,144 @@
+public abstract interface class com/juul/datadog/AndroidLogger : com/juul/datadog/Logger {
+	public abstract fun verbose (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+}
+
+public final class com/juul/datadog/AndroidLogger$DefaultImpls {
+	public static synthetic fun verbose$default (Lcom/juul/datadog/AndroidLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+}
+
+public final class com/juul/datadog/Configuration {
+	public fun <init> (Ljava/lang/String;Lcom/juul/datadog/Site;Ljava/lang/String;Ljava/lang/String;Lcom/juul/datadog/Configuration$Features;Lcom/juul/datadog/Configuration$UploadFrequency;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/juul/datadog/Site;Ljava/lang/String;Ljava/lang/String;Lcom/juul/datadog/Configuration$Features;Lcom/juul/datadog/Configuration$UploadFrequency;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/juul/datadog/Site;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lcom/juul/datadog/Configuration$Features;
+	public final fun component6 ()Lcom/juul/datadog/Configuration$UploadFrequency;
+	public final fun copy (Ljava/lang/String;Lcom/juul/datadog/Site;Ljava/lang/String;Ljava/lang/String;Lcom/juul/datadog/Configuration$Features;Lcom/juul/datadog/Configuration$UploadFrequency;)Lcom/juul/datadog/Configuration;
+	public static synthetic fun copy$default (Lcom/juul/datadog/Configuration;Ljava/lang/String;Lcom/juul/datadog/Site;Ljava/lang/String;Ljava/lang/String;Lcom/juul/datadog/Configuration$Features;Lcom/juul/datadog/Configuration$UploadFrequency;ILjava/lang/Object;)Lcom/juul/datadog/Configuration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClientToken ()Ljava/lang/String;
+	public final fun getEnvironment ()Ljava/lang/String;
+	public final fun getFeatures ()Lcom/juul/datadog/Configuration$Features;
+	public final fun getService ()Ljava/lang/String;
+	public final fun getSite ()Lcom/juul/datadog/Site;
+	public final fun getUploadFrequency ()Lcom/juul/datadog/Configuration$UploadFrequency;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/juul/datadog/Configuration$Features {
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Lcom/juul/datadog/Configuration$Features;
+	public static synthetic fun copy$default (Lcom/juul/datadog/Configuration$Features;ZILjava/lang/Object;)Lcom/juul/datadog/Configuration$Features;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLogs ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/juul/datadog/Configuration$UploadFrequency : java/lang/Enum {
+	public static final field Average Lcom/juul/datadog/Configuration$UploadFrequency;
+	public static final field Frequent Lcom/juul/datadog/Configuration$UploadFrequency;
+	public static final field Rare Lcom/juul/datadog/Configuration$UploadFrequency;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/juul/datadog/Configuration$UploadFrequency;
+	public static fun values ()[Lcom/juul/datadog/Configuration$UploadFrequency;
+}
+
+public abstract interface class com/juul/datadog/Initializer {
+	public abstract fun initialize (Lcom/juul/datadog/TrackingConsent;Lkotlin/jvm/functions/Function0;)V
+	public abstract fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
+}
+
+public final class com/juul/datadog/Initializer$DefaultImpls {
+	public static synthetic fun initialize$default (Lcom/juul/datadog/Initializer;Lcom/juul/datadog/TrackingConsent;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+}
+
+public abstract interface class com/juul/datadog/Logger {
+	public abstract fun debug (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public abstract fun error (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public abstract fun info (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public abstract fun warn (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+}
+
+public final class com/juul/datadog/Logger$DefaultImpls {
+	public static synthetic fun debug$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun error$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun info$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun warn$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+}
+
+public final class com/juul/datadog/Logger$Level : java/lang/Enum {
+	public static final field Assert Lcom/juul/datadog/Logger$Level;
+	public static final field Debug Lcom/juul/datadog/Logger$Level;
+	public static final field Error Lcom/juul/datadog/Logger$Level;
+	public static final field Info Lcom/juul/datadog/Logger$Level;
+	public static final field Notice Lcom/juul/datadog/Logger$Level;
+	public static final field Verbose Lcom/juul/datadog/Logger$Level;
+	public static final field Warn Lcom/juul/datadog/Logger$Level;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/juul/datadog/Logger$Level;
+	public static fun values ()[Lcom/juul/datadog/Logger$Level;
+}
+
+public final class com/juul/datadog/LoggerConfiguration {
+	public fun <init> (Ljava/lang/String;ZZZFZ)V
+	public synthetic fun <init> (Ljava/lang/String;ZZZFZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun component4 ()Z
+	public final fun component5 ()F
+	public final fun component6 ()Z
+	public final fun copy (Ljava/lang/String;ZZZFZ)Lcom/juul/datadog/LoggerConfiguration;
+	public static synthetic fun copy$default (Lcom/juul/datadog/LoggerConfiguration;Ljava/lang/String;ZZZFZILjava/lang/Object;)Lcom/juul/datadog/LoggerConfiguration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBundleWithRumEnabled ()Z
+	public final fun getBundleWithTraceEnabled ()Z
+	public final fun getLogToConsole ()Z
+	public final fun getNetworkInfoEnabled ()Z
+	public final fun getRemoteSampleRate ()F
+	public final fun getServiceName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/juul/datadog/NoopInitializer : com/juul/datadog/Initializer {
+	public fun <init> ()V
+	public fun initialize (Lcom/juul/datadog/TrackingConsent;Lkotlin/jvm/functions/Function0;)V
+	public fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
+}
+
+public final class com/juul/datadog/NoopLogger : com/juul/datadog/Logger {
+	public fun <init> ()V
+	public fun debug (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun error (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun info (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun warn (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+}
+
+public final class com/juul/datadog/Site : java/lang/Enum {
+	public static final field EU1 Lcom/juul/datadog/Site;
+	public static final field US1 Lcom/juul/datadog/Site;
+	public static final field US1_FED Lcom/juul/datadog/Site;
+	public static final field US3 Lcom/juul/datadog/Site;
+	public static final field US5 Lcom/juul/datadog/Site;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/juul/datadog/Site;
+	public static fun values ()[Lcom/juul/datadog/Site;
+}
+
+public final class com/juul/datadog/TrackingConsent : java/lang/Enum {
+	public static final field Granted Lcom/juul/datadog/TrackingConsent;
+	public static final field NotGranted Lcom/juul/datadog/TrackingConsent;
+	public static final field Pending Lcom/juul/datadog/TrackingConsent;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/juul/datadog/TrackingConsent;
+	public static fun values ()[Lcom/juul/datadog/TrackingConsent;
+}
+

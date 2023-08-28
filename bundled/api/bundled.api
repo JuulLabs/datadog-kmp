@@ -1,0 +1,29 @@
+public final class com/juul/datadog/Datadog {
+	public static final field INSTANCE Lcom/juul/datadog/Datadog;
+}
+
+public final class com/juul/datadog/DatadogContextInitializer : androidx/startup/Initializer {
+	public fun <init> ()V
+	public fun create (Landroid/content/Context;)Lcom/juul/datadog/Datadog;
+	public synthetic fun create (Landroid/content/Context;)Ljava/lang/Object;
+	public fun dependencies ()Ljava/util/List;
+}
+
+public final class com/juul/datadog/DatadogInitializer : com/juul/datadog/Initializer {
+	public fun <init> (Lcom/juul/datadog/Configuration;)V
+	public fun <init> (Lcom/juul/datadog/Configuration;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/juul/datadog/Configuration;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun initialize (Lcom/juul/datadog/TrackingConsent;Lkotlin/jvm/functions/Function0;)V
+	public fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
+}
+
+public final class com/juul/datadog/DatadogLogger : com/juul/datadog/AndroidLogger {
+	public fun <init> (Ljava/lang/String;Lcom/juul/datadog/Logger$Level;Lcom/juul/datadog/LoggerConfiguration;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/juul/datadog/Logger$Level;Lcom/juul/datadog/LoggerConfiguration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun debug (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun error (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun info (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun verbose (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun warn (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+}
+
