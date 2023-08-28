@@ -12,4 +12,11 @@ public interface Initializer {
         trackingConsent: TrackingConsent,
         onReady: (() -> Unit)? = null,
     )
+
+    /**
+     * Should only be called after Datadog is [initialized][initialize].
+     *
+     * No-ops on JavaScript.
+     */
+    public fun setTrackingConsent(trackingConsent: TrackingConsent)
 }

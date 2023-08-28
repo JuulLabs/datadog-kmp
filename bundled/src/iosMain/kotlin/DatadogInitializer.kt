@@ -19,6 +19,10 @@ public actual class DatadogInitializer actual constructor(
         if (configuration.features.logs) DDLogs.enableWith(DDLogsConfiguration())
         onReady?.invoke()
     }
+
+    override fun setTrackingConsent(trackingConsent: TrackingConsent) {
+        DDDatadog.setTrackingConsentWithConsent(trackingConsent.toDatadogType())
+    }
 }
 
 private fun DDConfiguration(

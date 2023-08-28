@@ -28,6 +28,10 @@ public actual class DatadogInitializer(
         if (configuration.features.logs) Logs.enable(LogsConfiguration.Builder().build())
         onReady?.invoke()
     }
+
+    override fun setTrackingConsent(trackingConsent: TrackingConsent) {
+        Datadog.setTrackingConsent(trackingConsent.toDatadogType())
+    }
 }
 
 private fun Configuration.toDatadogType(variant: String): DatadogConfiguration =

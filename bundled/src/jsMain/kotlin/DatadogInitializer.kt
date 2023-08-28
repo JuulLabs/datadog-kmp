@@ -36,6 +36,10 @@ public actual class DatadogInitializer actual constructor(
             },
         )
     }
+
+    override fun setTrackingConsent(trackingConsent: TrackingConsent) {
+        // No-op
+    }
 }
 
 private fun Site.toDatadogType(): String = when (this) {
