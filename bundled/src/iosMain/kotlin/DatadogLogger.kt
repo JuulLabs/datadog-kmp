@@ -24,7 +24,7 @@ public actual class DatadogLogger actual constructor(
 ) : IosLogger {
 
     private val logger = DDLogger.createWith(
-        DDLoggerConfiguration(name, level ?: Logger.Level.Debug, configuration)
+        DDLoggerConfiguration(name, level ?: Logger.Level.Debug, configuration),
     )
 
     override fun notice(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
