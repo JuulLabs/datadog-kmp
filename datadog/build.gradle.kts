@@ -65,7 +65,7 @@ kotlin {
 android {
     compileSdk = libs.versions.android.compile.get().toInt()
     defaultConfig.minSdk = libs.versions.android.min.get().toInt()
-    namespace = "com.juul.datadog-kmp"
+    namespace = "com.juul.datadog"
     lint {
         abortOnError = true
         warningsAsErrors = true
