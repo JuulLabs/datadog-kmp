@@ -15,8 +15,7 @@ kotlin {
      * |-- mobile
      * |   |-- android
      * |   '-- ios
-     * '-- nativeDarwin
-     *     '-- macos
+     * '-- macos
      */
 
     androidTarget().publishAllLibraryVariants()
@@ -49,16 +48,16 @@ kotlin {
             dependsOn(iosMain)
         }
 
-        val macosCommonMain by creating {
+        val macosMain by creating {
             dependsOn(commonMain)
         }
 
         val macosArm64Main by getting {
-            dependsOn(macosCommonMain)
+            dependsOn(macosMain)
         }
 
         val macosX64Main by getting {
-            dependsOn(macosCommonMain)
+            dependsOn(macosMain)
         }
     }
 }
