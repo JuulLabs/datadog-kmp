@@ -14,6 +14,6 @@ nserrorkt = { module = "com.rickclephas.kmp:nserror-kt", version = "0.1.0" }
 [plugins]
 android-library = { id = "com.android.library", version = "8.1.0" }
 api = { id = "binary-compatibility-validator", version = "0.13.2" }
-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "1.9.0" }
-kotlinter = { id = "org.jmailen.kotlinter", version = "3.15.0" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "1.9.10" }
+kotlinter = { id = "org.jmailen.kotlinter", version = "3.16.0" }
 swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version = "2.1.2" }
