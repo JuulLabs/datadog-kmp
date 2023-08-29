@@ -87,7 +87,7 @@ android {
     compileSdk = libs.versions.android.compile.get().toInt()
     defaultConfig.minSdk = libs.versions.android.min.get().toInt()
 
-    namespace = "com.juul.datadog.bundled"
+    namespace = "com.juul.datadog-kmp.bundled"
 
     lint {
         abortOnError = true
