@@ -9,7 +9,7 @@ public actual class DatadogLogger actual constructor(
     name: String,
     level: Logger.Level?,
     configuration: LoggerConfiguration?,
-) : AndroidLogger {
+) : JvmLogger {
 
     private val logger: DatadogLogger = DatadogLogger.Builder()
         .setName(name)

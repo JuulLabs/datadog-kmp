@@ -1,6 +1,4 @@
 plugins {
-    // Android plugin must be before multiplatform plugin until https://youtrack.jetbrains.com/issue/KT-34038 is fixed.
-    alias(libs.plugins.android.library)
     kotlin("multiplatform")
     alias(libs.plugins.kotlinter)
     `maven-publish`
@@ -12,16 +10,16 @@ kotlin {
 
     /* common
      * |-- js
-     * |-- mobile
-     * |   |-- android
-     * |   '-- ios
-     * '-- macos
+     * |-- macos
+     * '-- mobile
+     *     |-- ios
+     *     '-- jvm
      */
 
-    androidTarget().publishAllLibraryVariants()
     iosArm64()
     iosSimulatorArm64()
     js().browser()
+    jvm()
     macosArm64()
     macosX64()
 
@@ -32,7 +30,7 @@ kotlin {
             dependsOn(commonMain)
         }
 
-        val androidMain by getting {
+        val jvmMain by getting {
             dependsOn(mobileMain)
         }
 
@@ -59,15 +57,5 @@ kotlin {
         val macosX64Main by getting {
             dependsOn(macosMain)
         }
-    }
-}
-
-android {
-    compileSdk = libs.versions.android.compile.get().toInt()
-    defaultConfig.minSdk = libs.versions.android.min.get().toInt()
-    namespace = "com.juul.datadog"
-    lint {
-        abortOnError = true
-        warningsAsErrors = true
     }
 }
