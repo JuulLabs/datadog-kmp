@@ -1,0 +1,28 @@
+name-template: '$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
+categories:
+  - title: '![Logo]() Android'
+    label: 'android'
+  - title: '![Logo]() Apple'
+    label: 'apple'
+  - title: '![Logo]() JavaScript'
+    label: 'javascript'
+  - title: '🧰 Maintenance'
+    labels:
+      - 'maintenance'
+      - 'renovate'
+change-template: '- $TITLE (#$NUMBER)'
+exclude-labels:
+  - 'skip-changelog'
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+  default: patch
+template: $CHANGES
