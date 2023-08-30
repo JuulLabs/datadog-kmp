@@ -4,7 +4,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     alias(libs.plugins.kotlinter)
-    `maven-publish`
+    alias(libs.plugins.maven.publish)
 }
 
 kotlin {
