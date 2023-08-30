@@ -1,11 +1,11 @@
 name-template: '$RESOLVED_VERSION'
 tag-template: '$RESOLVED_VERSION'
 categories:
-  - title: '![Logo]() Android'
+  - title: '![Logo](https://user-images.githubusercontent.com/98017/264487812-8508e6f3-7b8b-4b95-8190-1302c87c2ac5.png) Android'
     label: 'android'
-  - title: '![Logo]() Apple'
+  - title: '![Logo](https://user-images.githubusercontent.com/98017/264487781-2752f29c-108e-4812-aabc-854ffa501008.png) Apple'
     label: 'apple'
-  - title: '![Logo]() JavaScript'
+  - title: '![Logo](https://user-images.githubusercontent.com/98017/264487832-db3e82ef-9cc6-42bb-87de-2dd653e8a712.png) JavaScript'
     label: 'javascript'
   - title: '🧰 Maintenance'
     labels:
