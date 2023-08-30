@@ -1,3 +1,3 @@
 package com.juul.datadog
 
-public actual typealias PlatformLogger = AndroidLogger
+public actual typealias PlatformLogger = JvmLogger

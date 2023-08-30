@@ -17,7 +17,7 @@ public final class com/juul/datadog/DatadogInitializer : com/juul/datadog/Initia
 	public fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
 }
 
-public final class com/juul/datadog/DatadogLogger : com/juul/datadog/AndroidLogger {
+public final class com/juul/datadog/DatadogLogger : com/juul/datadog/JvmLogger {
 	public fun <init> (Ljava/lang/String;Lcom/juul/datadog/Logger$Level;Lcom/juul/datadog/LoggerConfiguration;)V
 	public synthetic fun <init> (Ljava/lang/String;Lcom/juul/datadog/Logger$Level;Lcom/juul/datadog/LoggerConfiguration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun debug (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
