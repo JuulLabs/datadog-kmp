@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8">
+        <title>Datadog Sample</title>
+        <link rel="stylesheet" href="styles.css">
+        <script type="text/javascript" src="webapp.js"></script>
+        <script type="text/javascript">
+            var webapp = new webapp.com.juul.datadog.sample.Webapp();
+            webapp.init();
+        </script>
+    </head>
+    <body>
+        <h1>Datadog Test</h1>
+        <input id="message" value="Hello, world!"/><br/>
+        <input id="exceptionMessage" value="Ouch!"/><br/>
+        <button onclick="webapp.i(document.getElementById('message').value);">Info</button>
+        <button onclick="webapp.e(document.getElementById('message').value, document.getElementById('exceptionMessage').value);">Error</button>
+    </body>
+</html>

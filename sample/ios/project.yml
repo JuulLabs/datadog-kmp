@@ -1,0 +1,41 @@
+name: SampleApp
+options:
+  bundleIdPrefix: com.juul.datadog
+  usesTabs: false
+  indentWidth: 4
+  defaultConfig: Debug
+packages:
+  dd-sdk-ios:
+    url: https://github.com/Datadog/dd-sdk-ios
+    version: 2.0.0
+  AnyCodable:
+    url: https://github.com/Flight-School/AnyCodable
+    version: 0.6.7
+targets:
+  Sample:
+    type: application
+    platform: iOS
+    deploymentTarget: "14.0"
+    settings:
+      GENERATE_INFOPLIST_FILE: YES
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: "Datadog Sample"
+        CFBundleVersion: "0.0.1"
+        CFBundleShortVersionString: "0.0.1"
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        LSRequiresIPhoneOS: true
+    sources:
+      - path: Sources
+        buildPhase: sources
+      - path: Resources
+        buildPhase: resources
+    dependencies:
+      - framework: ../library/build/swiftpackage/SampleLibrary.xcframework
+      - package: dd-sdk-ios
+        product: DatadogCore
+      - package: dd-sdk-ios
+        product: DatadogLogs
+      - package: AnyCodable
