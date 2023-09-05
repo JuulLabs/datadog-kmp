@@ -5,6 +5,7 @@ android-target = "33"
 android-min = "21"
 compose = "1.4.3"
 compose-compiler = "1.5.1"
+datadog-kmp = "0.1.0"
 jvm-toolchain = "11"
 
 [libraries]
@@ -12,8 +13,8 @@ compose-activity = { module = "androidx.activity:activity-compose", version = "1
 compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compose-compiler" }
 compose-material = { module = "androidx.compose.material:material", version = "1.4.3" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-datadog-kmp = { module = "com.juul.datadog:datadog", version = "0.0.1" }
-datadog-kmp-bundled = { module = "com.juul.datadog:bundled", version = "0.0.1" }
+datadog-kmp = { module = "com.juul.datadog:datadog", version.ref = "datadog-kmp" }
+datadog-kmp-bundled = { module = "com.juul.datadog:bundled", version.ref = "datadog-kmp" }
 nserrorkt = { module = "com.rickclephas.kmp:nserror-kt", version = "0.1.0" }
 
 [bundles]

@@ -1,0 +1,53 @@
+name: CI
+on:
+  pull_request:
+  # Trigger on merges to `main` to allow `gradle/gradle-build-action` runs to write their caches.
+  # https://github.com/gradle/gradle-build-action#using-the-caches-read-only
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: local.properties
+        working-directory: library
+        run: |
+          cat <<TEXTFILE > local.properties
+          datadog.clientToken.android=noop
+          datadog.clientToken.ios=noop
+          datadog.clientToken.js=noop
+          TEXTFILE
+
+      - name: assemble
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: assemble
+
+      - name: jsBrowserWebpack
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: jsBrowserWebpack
+
+      - run: brew install xcodegen
+
+      - name: generateXcodeProject
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: generateXcodeProject
+
+      - run: xcodebuild -scheme Sample build CODE_SIGN_IDENTITY="" CODE_SIGNING_ALLOWED=NO
+        working-directory: ios
+
+      - name: check
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: check

@@ -11,7 +11,13 @@ tasks.register<Exec>("generateXcodeProject") {
     description = "Use xcodegen to create a sample Xcode project"
     group = "Project Setup"
     dependsOn(tasks.getByPath(":library:createSwiftPackage"))
-    commandLine("/opt/homebrew/bin/xcodegen")
+    val paths = listOf(
+        "/usr/local/bin/xcodegen",
+        "/opt/homebrew/bin/xcodegen",
+    )
+    val xcodegen = paths.firstOrNull { file(it).exists() }
+        ?: error("xcodegen not found at $paths")
+    commandLine(xcodegen)
 }
 
 tasks.register<Exec>("openXcode") {
