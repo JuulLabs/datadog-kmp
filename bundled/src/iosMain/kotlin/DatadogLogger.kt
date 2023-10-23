@@ -73,6 +73,7 @@ public actual class DatadogLogger actual constructor(
     }
 }
 
+@Suppress("ktlint:standard:function-naming")
 private fun DDLoggerConfiguration(
     name: String,
     level: Logger.Level,
