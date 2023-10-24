@@ -17,4 +17,4 @@ api = { id = "binary-compatibility-validator", version = "0.13.2" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "1.9.10" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "4.0.0" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.25.3" }
-swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version = "2.1.4" }
+swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version = "2.2.0" }
