@@ -36,6 +36,12 @@ kotlin {
     }
 
     sourceSets {
+        all {
+            all {
+                languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            }
+        }
+
         val commonMain by getting {
             dependencies {
                 api(projects.datadog)
