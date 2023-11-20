@@ -27,13 +27,21 @@ kotlin {
 
         pod("DatadogObjc") {
             version = "~> ${libs.versions.datadog.ios.get()}"
+            extraOpts += listOf("-compiler-option", "-fmodules")
         }
         pod("DatadogCore") {
             version = "~> ${libs.versions.datadog.ios.get()}"
+            extraOpts += listOf("-compiler-option", "-fmodules")
         }
     }
 
     sourceSets {
+        all {
+            all {
+                languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            }
+        }
+
         val commonMain by getting {
             dependencies {
                 api(projects.datadog)
