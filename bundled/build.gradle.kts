@@ -27,9 +27,11 @@ kotlin {
 
         pod("DatadogObjc") {
             version = "~> ${libs.versions.datadog.ios.get()}"
+            extraOpts += listOf("-compiler-option", "-fmodules")
         }
         pod("DatadogCore") {
             version = "~> ${libs.versions.datadog.ios.get()}"
+            extraOpts += listOf("-compiler-option", "-fmodules")
         }
     }
 
