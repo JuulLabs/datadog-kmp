@@ -9,12 +9,12 @@ jvm-toolchain = "11"
 [libraries]
 androidx-startup = { module = "androidx.startup:startup-runtime", version = "1.1.1" }
 datadog-logs = { module = "com.datadoghq:dd-sdk-android-logs", version.ref = "datadog-android" }
-nserrorkt = { module = "com.rickclephas.kmp:nserror-kt", version = "0.1.0" }
+nserrorkt = { module = "com.rickclephas.kmp:nserror-kt", version = "0.2.0" }
 
 [plugins]
-android-library = { id = "com.android.library", version = "8.2.0" }
+android-library = { id = "com.android.library", version = "8.2.1" }
 api = { id = "binary-compatibility-validator", version = "0.13.2" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "1.9.22" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "4.1.1" }
-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.26.0" }
+maven-publish = { id = "com.vanniktech.maven.publish", version = "0.27.0" }
 swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version = "2.2.1" }
