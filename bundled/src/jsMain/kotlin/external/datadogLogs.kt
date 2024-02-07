@@ -99,6 +99,10 @@ public external interface DatadogLogs {
     public fun getLogger(name: String): JsLogger
 
     public val logger: JsLogger
+
+    public fun setGlobalContextProperty(key: String, value: String)
+
+    public fun removeGlobalContextProperty(key: String)
 }
 
 public external val datadogLogs: DatadogLogs
