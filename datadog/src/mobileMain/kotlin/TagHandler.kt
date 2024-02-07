@@ -6,7 +6,7 @@ public interface TagHandler {
 
     public fun removeTag(tag: String)
 
-    public fun addTagsWithKey(key: String, value: String)
+    public fun addTagWithKey(key: String, value: String)
 
     public fun removeTagsWithKey(key: String)
 }

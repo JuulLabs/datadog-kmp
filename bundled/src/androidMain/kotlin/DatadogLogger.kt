@@ -76,7 +76,7 @@ public actual class DatadogLogger actual constructor(
         logger.removeTag(tag)
     }
 
-    override fun addTagsWithKey(key: String, value: String) {
+    override fun addTagWithKey(key: String, value: String) {
         logger.addTag(key, value)
     }
 
