@@ -91,7 +91,6 @@ public actual class DatadogLogger actual constructor(
     override fun removeAttribute(key: String) {
         logger.removeAttribute(key)
     }
-
 }
 
 private fun Logger.Level.toDatadogType(): Int = when (this) {

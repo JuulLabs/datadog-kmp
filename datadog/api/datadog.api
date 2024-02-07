@@ -52,17 +52,22 @@ public final class com/juul/datadog/Initializer$DefaultImpls {
 }
 
 public abstract interface class com/juul/datadog/JvmLogger : com/juul/datadog/Logger {
+	public abstract fun assert (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 	public abstract fun verbose (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 }
 
 public final class com/juul/datadog/JvmLogger$DefaultImpls {
+	public static synthetic fun assert$default (Lcom/juul/datadog/JvmLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public static synthetic fun verbose$default (Lcom/juul/datadog/JvmLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 }
 
 public abstract interface class com/juul/datadog/Logger {
+	public abstract fun addAttribute (Ljava/lang/String;Ljava/lang/String;)V
 	public abstract fun debug (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 	public abstract fun error (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 	public abstract fun info (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public abstract fun log (Lcom/juul/datadog/Logger$Level;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public abstract fun removeAttribute (Ljava/lang/String;)V
 	public abstract fun warn (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 }
 
@@ -70,6 +75,7 @@ public final class com/juul/datadog/Logger$DefaultImpls {
 	public static synthetic fun debug$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public static synthetic fun error$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public static synthetic fun info$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun log$default (Lcom/juul/datadog/Logger;Lcom/juul/datadog/Logger$Level;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public static synthetic fun warn$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 }
 
@@ -116,9 +122,12 @@ public final class com/juul/datadog/NoopInitializer : com/juul/datadog/Initializ
 
 public final class com/juul/datadog/NoopLogger : com/juul/datadog/Logger {
 	public fun <init> ()V
+	public fun addAttribute (Ljava/lang/String;Ljava/lang/String;)V
 	public fun debug (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 	public fun error (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 	public fun info (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun log (Lcom/juul/datadog/Logger$Level;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun removeAttribute (Ljava/lang/String;)V
 	public fun warn (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 }
 
@@ -131,6 +140,13 @@ public final class com/juul/datadog/Site : java/lang/Enum {
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/juul/datadog/Site;
 	public static fun values ()[Lcom/juul/datadog/Site;
+}
+
+public abstract interface class com/juul/datadog/TagHandler {
+	public abstract fun addTag (Ljava/lang/String;)V
+	public abstract fun addTagWithKey (Ljava/lang/String;Ljava/lang/String;)V
+	public abstract fun removeTag (Ljava/lang/String;)V
+	public abstract fun removeTagWithKey (Ljava/lang/String;)V
 }
 
 public final class com/juul/datadog/TrackingConsent : java/lang/Enum {
