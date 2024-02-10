@@ -9,6 +9,13 @@ import cocoapods.DatadogObjc.DDLogLevelNotice
 import cocoapods.DatadogObjc.DDLogLevelWarn
 import cocoapods.DatadogObjc.DDLogger
 import cocoapods.DatadogObjc.DDLoggerConfiguration
+import com.juul.datadog.Logger.Level.Assert
+import com.juul.datadog.Logger.Level.Debug
+import com.juul.datadog.Logger.Level.Error
+import com.juul.datadog.Logger.Level.Info
+import com.juul.datadog.Logger.Level.Notice
+import com.juul.datadog.Logger.Level.Verbose
+import com.juul.datadog.Logger.Level.Warn
 import com.rickclephas.kmp.nserrorkt.asNSError
 
 /**
@@ -21,10 +28,10 @@ public actual class DatadogLogger actual constructor(
     name: String,
     level: Logger.Level?,
     configuration: LoggerConfiguration?,
-) : IosLogger {
+) : IosLogger, TagHandler {
 
     private val logger = DDLogger.createWith(
-        DDLoggerConfiguration(name, level ?: Logger.Level.Debug, configuration),
+        DDLoggerConfiguration(name, level ?: Debug, configuration),
     )
 
     override fun notice(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
@@ -33,6 +40,26 @@ public actual class DatadogLogger actual constructor(
             logger.notice(message, attrs)
         } else {
             logger.notice(message, throwable.asNSError(), attrs)
+        }
+    }
+
+    override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+        when (level) {
+            Verbose, Debug -> debug(message, attributes, throwable)
+            Info -> info(message, attributes, throwable)
+            Notice -> notice(message, attributes, throwable)
+            Warn -> warn(message, attributes, throwable)
+            Error -> error(message, attributes, throwable)
+            Assert -> critical(message, attributes, throwable)
+        }
+    }
+
+    override fun critical(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+        val attrs = attributes.orEmpty() as Map<Any?, *>
+        if (throwable == null) {
+            logger.critical(message, attrs)
+        } else {
+            logger.critical(message, throwable.asNSError(), attrs)
         }
     }
 
@@ -71,6 +98,30 @@ public actual class DatadogLogger actual constructor(
             logger.error(message, throwable.asNSError(), attrs)
         }
     }
+
+    override fun addTag(tag: String) {
+        logger.addWithTag(tag)
+    }
+
+    override fun removeTag(tag: String) {
+        logger.removeWithTag(tag)
+    }
+
+    override fun addTagWithKey(key: String, value: String) {
+        logger.addTagWithKey(key, value)
+    }
+
+    override fun removeTagsWithKey(key: String) {
+        logger.removeTagWithKey(key)
+    }
+
+    override fun addAttribute(key: String, value: String) {
+        logger.addAttributeForKey(key, value)
+    }
+
+    override fun removeAttribute(key: String) {
+        logger.removeAttributeForKey(key)
+    }
 }
 
 @Suppress("ktlint:standard:function-naming")
@@ -97,10 +148,10 @@ private fun DDLoggerConfiguration(
 }
 
 private fun Logger.Level.toDatadogType(): DDLogLevel = when (this) {
-    Logger.Level.Verbose, Logger.Level.Debug -> DDLogLevelDebug
-    Logger.Level.Info -> DDLogLevelInfo
-    Logger.Level.Notice -> DDLogLevelNotice
-    Logger.Level.Warn -> DDLogLevelWarn
-    Logger.Level.Error -> DDLogLevelError
-    Logger.Level.Assert -> DDLogLevelCritical
+    Verbose, Debug -> DDLogLevelDebug
+    Info -> DDLogLevelInfo
+    Notice -> DDLogLevelNotice
+    Warn -> DDLogLevelWarn
+    Error -> DDLogLevelError
+    Assert -> DDLogLevelCritical
 }

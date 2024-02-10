@@ -17,12 +17,20 @@ public final class com/juul/datadog/DatadogInitializer : com/juul/datadog/Initia
 	public fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
 }
 
-public final class com/juul/datadog/DatadogLogger : com/juul/datadog/JvmLogger {
+public final class com/juul/datadog/DatadogLogger : com/juul/datadog/JvmLogger, com/juul/datadog/TagHandler {
 	public fun <init> (Ljava/lang/String;Lcom/juul/datadog/Logger$Level;Lcom/juul/datadog/LoggerConfiguration;)V
 	public synthetic fun <init> (Ljava/lang/String;Lcom/juul/datadog/Logger$Level;Lcom/juul/datadog/LoggerConfiguration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun addAttribute (Ljava/lang/String;Ljava/lang/String;)V
+	public fun addTag (Ljava/lang/String;)V
+	public fun addTagWithKey (Ljava/lang/String;Ljava/lang/String;)V
+	public fun assert (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 	public fun debug (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 	public fun error (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 	public fun info (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun log (Lcom/juul/datadog/Logger$Level;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun removeAttribute (Ljava/lang/String;)V
+	public fun removeTag (Ljava/lang/String;)V
+	public fun removeTagsWithKey (Ljava/lang/String;)V
 	public fun verbose (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 	public fun warn (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 }
