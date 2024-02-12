@@ -1,5 +1,12 @@
 package com.juul.datadog
 
+import com.juul.datadog.Logger.Level.Assert
+import com.juul.datadog.Logger.Level.Debug
+import com.juul.datadog.Logger.Level.Error
+import com.juul.datadog.Logger.Level.Info
+import com.juul.datadog.Logger.Level.Notice
+import com.juul.datadog.Logger.Level.Verbose
+import com.juul.datadog.Logger.Level.Warn
 import com.juul.datadog.external.JsLoggerConfiguration
 import com.juul.datadog.external.datadogLogs
 
@@ -10,6 +17,14 @@ public actual class DatadogLogger actual constructor(
 ) : BrowserLogger {
 
     private val logger = datadogLogs.createLogger(name, conf(level, configuration))
+    override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+        when (level) {
+            Verbose, Debug -> debug(message, attributes, throwable)
+            Info -> info(message, attributes, throwable)
+            Notice, Warn -> warn(message, attributes, throwable)
+            Error, Assert -> error(message, attributes, throwable)
+        }
+    }
 
     override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.debug(message, attributes?.toJsObject(), throwable)
@@ -26,6 +41,14 @@ public actual class DatadogLogger actual constructor(
     override fun error(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.error(message, attributes?.toJsObject(), throwable)
     }
+
+    override fun addAttribute(key: String, value: String) {
+        datadogLogs.setGlobalContextProperty(key, value)
+    }
+
+    override fun removeAttribute(key: String) {
+        datadogLogs.removeGlobalContextProperty(key)
+    }
 }
 
 private fun conf(
@@ -40,10 +63,10 @@ private fun conf(
 }
 
 private fun Logger.Level.toDatadogType() = when (this) {
-    Logger.Level.Verbose, Logger.Level.Debug -> "debug"
-    Logger.Level.Info -> "info"
-    Logger.Level.Notice, Logger.Level.Warn -> "warn"
-    Logger.Level.Error, Logger.Level.Assert -> "error"
+    Verbose, Debug -> "debug"
+    Info -> "info"
+    Notice, Warn -> "warn"
+    Error, Assert -> "error"
 }
 
 private fun LoggerConfiguration.Handler.toDatadogType(): String = when (this) {
