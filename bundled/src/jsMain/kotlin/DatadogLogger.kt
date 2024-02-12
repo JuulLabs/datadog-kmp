@@ -43,11 +43,11 @@ public actual class DatadogLogger actual constructor(
     }
 
     override fun addAttribute(key: String, value: String) {
-        datadogLogs.setGlobalContextProperty(key, value)
+        datadogLogs.addAttribute(key, value)
     }
 
     override fun removeAttribute(key: String) {
-        datadogLogs.removeGlobalContextProperty(key)
+        datadogLogs.removeAttribute(key)
     }
 }
 
