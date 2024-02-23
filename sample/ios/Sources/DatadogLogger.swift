@@ -17,6 +17,27 @@ class DatadogLogger : SampleLibrary.IosLogger {
         )
     }
     
+    func log(level: LoggerLevel, message: String, attributes: [String : Any]? = nil, throwable: KotlinThrowable?) {
+        logger.log(
+            level: toDatadogLogLevel(from: level),
+            message: message,
+            error: throwable?.asNSError(),
+            attributes: attributes?.mapValuesToEncodable()
+        )
+    }
+
+    func critical(message: String, attributes: [String : Any]? = nil, throwable: KotlinThrowable?) {
+        critical(
+            message: message,
+            attributes: attributes?.mapValuesToEncodable(),
+            error: throwable?.asNSError()
+        )
+    }
+
+    func critical(message: String, attributes: [String : Encodable]? = nil, error: Error? = nil) {
+        logger.critical(message, error: error, attributes: attributes)
+    }
+
     func notice(message: String, attributes: [String : Any]? = nil, throwable: KotlinThrowable? = nil) {
         notice(
             message: message,
@@ -75,6 +96,14 @@ class DatadogLogger : SampleLibrary.IosLogger {
 
     func error(message: String, attributes: [String : Encodable]? = nil, error: Error? = nil) {
         logger.error(message, error: error, attributes: attributes)
+    }
+
+    func addAttribute(key: String, value: String) {
+        logger.addAttribute(forKey: key, value: value)
+    }
+
+    func removeAttribute(key: String) {
+        logger.removeAttribute(forKey: key)
     }
 }
 
