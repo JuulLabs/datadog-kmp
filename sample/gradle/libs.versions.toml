@@ -11,7 +11,7 @@ jvm-toolchain = "11"
 [libraries]
 compose-activity = { module = "androidx.activity:activity-compose", version = "1.8.2" }
 compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compose-compiler" }
-compose-material = { module = "androidx.compose.material:material", version = "1.6.0" }
+compose-material = { module = "androidx.compose.material:material", version = "1.6.3" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 datadog-kmp = { module = "com.juul.datadog:datadog", version.ref = "datadog-kmp" }
 datadog-kmp-bundled = { module = "com.juul.datadog:bundled", version.ref = "datadog-kmp" }
