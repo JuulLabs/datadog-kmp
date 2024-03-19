@@ -16,5 +16,5 @@ android-library = { id = "com.android.library", version = "8.3.0" }
 api = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.14.0" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "1.9.23" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "4.2.0" }
-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.27.0" }
+maven-publish = { id = "com.vanniktech.maven.publish", version = "0.28.0" }
 swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version = "2.2.2" }
