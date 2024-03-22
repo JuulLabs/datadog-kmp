@@ -4,7 +4,7 @@ android-compile = "34"
 android-target = "33"
 android-min = "21"
 compose = "1.6.3"
-compose-compiler = "1.5.10"
+compose-compiler = "1.5.11"
 datadog-kmp = "0.2.0"
 jvm-toolchain = "11"
 
@@ -27,6 +27,6 @@ compose = [
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "1.9.22" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "1.9.23" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "4.2.0" }
 swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version = "2.2.2" }
