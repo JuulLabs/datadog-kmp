@@ -12,7 +12,7 @@ datadog-logs = { module = "com.datadoghq:dd-sdk-android-logs", version.ref = "da
 nserrorkt = { module = "com.rickclephas.kmp:nserror-kt", version = "0.2.0" }
 
 [plugins]
-android-library = { id = "com.android.library", version = "8.3.0" }
+android-library = { id = "com.android.library", version = "8.3.1" }
 api = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.14.0" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "1.9.23" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "4.2.0" }
