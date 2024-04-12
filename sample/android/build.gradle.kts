@@ -31,7 +31,7 @@ android {
     lint {
         abortOnError = true
         warningsAsErrors = true
-        disable += listOf("GradleDependency", "MissingApplicationIcon")
+        disable += listOf("AndroidGradlePluginVersion", "GradleDependency", "MissingApplicationIcon")
     }
     buildFeatures.compose = true
     composeOptions.kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
