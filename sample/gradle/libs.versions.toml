@@ -4,7 +4,7 @@ android-compile = "34"
 android-target = "33"
 android-min = "21"
 compose = "1.6.5"
-compose-compiler = "1.5.11"
+compose-compiler = "1.5.12"
 datadog-kmp = "0.2.0"
 jvm-toolchain = "11"
 
