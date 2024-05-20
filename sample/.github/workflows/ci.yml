@@ -12,11 +12,13 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: gradle/wrapper-validation-action@v2
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+          validate-wrappers: true
 
       - name: local.properties
         working-directory: library
@@ -27,27 +29,14 @@ jobs:
           datadog.clientToken.js=noop
           TEXTFILE
 
-      - name: assemble
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: assemble
-
-      - name: jsBrowserWebpack
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: jsBrowserWebpack
+      - run: ./gradlew assemble
+      - run: ./gradlew jsBrowserWebpack
 
       - run: brew install xcodegen
 
-      - name: generateXcodeProject
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: generateXcodeProject
+      - run: ./gradlew generateXcodeProject
 
       - run: xcodebuild -scheme Sample build CODE_SIGN_IDENTITY="" CODE_SIGNING_ALLOWED=NO
         working-directory: ios
 
-      - name: check
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: check
+      - run: ./gradlew check
