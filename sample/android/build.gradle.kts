@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.application)
     kotlin("multiplatform")
     alias(libs.plugins.kotlinter)
+    alias(libs.plugins.compose)
 }
 
 kotlin {
@@ -34,5 +35,4 @@ android {
         disable += listOf("AndroidGradlePluginVersion", "GradleDependency", "MissingApplicationIcon")
     }
     buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
 }

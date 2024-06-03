@@ -1,7 +1,8 @@
+*.xcodeproj/
 .DS_Store
 .gradle/
 .idea/
+.kotlin/
+Info.plist
 build/
 local.properties
-*.xcodeproj/
-Info.plist
