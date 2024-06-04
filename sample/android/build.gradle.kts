@@ -13,11 +13,9 @@ kotlin {
     androidTarget()
 
     sourceSets {
-        val androidMain by getting {
-            dependencies {
-                implementation(projects.library)
-                implementation(libs.bundles.compose)
-            }
+        androidMain.dependencies {
+            implementation(projects.library)
+            implementation(libs.bundles.compose)
         }
     }
 }

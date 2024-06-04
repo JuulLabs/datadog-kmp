@@ -34,6 +34,8 @@ kotlin {
     iosSimulatorArm64()
     js().browser()
 
+    applyDefaultHierarchyTemplate()
+
     val xcf = XCFramework()
     listOf(
         iosArm64(),
@@ -75,28 +77,19 @@ kotlin {
             }
         }
 
-        val androidMain by getting {
+        getByName("androidMain") {
             dependsOn(bundledMain)
             kotlin.srcDir("$buildDir/generated/sources/datadog/$name/kotlin")
         }
 
-        val iosMain by creating {
-            dependsOn(commonMain)
+        getByName("iosMain") {
             kotlin.srcDir("$buildDir/generated/sources/datadog/$name/kotlin")
             dependencies {
                 api(libs.nserrorkt)
             }
         }
 
-        val iosArm64Main by getting {
-            dependsOn(iosMain)
-        }
-
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
-        }
-
-        val jsMain by getting {
+        getByName("jsMain") {
             dependsOn(bundledMain)
             kotlin.srcDir("$buildDir/generated/sources/datadog/$name/kotlin")
         }

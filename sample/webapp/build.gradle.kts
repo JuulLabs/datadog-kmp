@@ -13,10 +13,8 @@ kotlin {
     }
 
     sourceSets {
-        val jsMain by getting {
-            dependencies {
-                implementation(projects.library)
-            }
+        jsMain.dependencies {
+            implementation(projects.library)
         }
     }
 }
