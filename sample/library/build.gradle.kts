@@ -79,11 +79,11 @@ kotlin {
 
         getByName("androidMain") {
             dependsOn(bundledMain)
-            kotlin.srcDir("$buildDir/generated/sources/datadog/$name/kotlin")
+            kotlin.srcDir(layout.buildDirectory.file("generated/sources/datadog/$name/kotlin"))
         }
 
         getByName("iosMain") {
-            kotlin.srcDir("$buildDir/generated/sources/datadog/$name/kotlin")
+            kotlin.srcDir(layout.buildDirectory.file("generated/sources/datadog/$name/kotlin"))
             dependencies {
                 api(libs.nserrorkt)
             }
@@ -91,7 +91,7 @@ kotlin {
 
         getByName("jsMain") {
             dependsOn(bundledMain)
-            kotlin.srcDir("$buildDir/generated/sources/datadog/$name/kotlin")
+            kotlin.srcDir(layout.buildDirectory.file("generated/sources/datadog/$name/kotlin"))
         }
     }
 }
@@ -102,7 +102,7 @@ multiplatformSwiftPackage {
     targetPlatforms {
         iOS { v("14") }
     }
-    outputDirectory(File(buildDir, "swiftpackage"))
+    outputDirectory(layout.buildDirectory.file("swiftpackage").get().asFile)
     zipFileName("sample-library")
 }
 
@@ -127,7 +127,7 @@ tasks.register("datadogClientTokens") {
     listOf("android", "ios", "js",).forEach { target ->
         val property = "datadog.clientToken.$target"
         val token = properties.getOrElse(property) { error("Missing $property in $projectDir/local.properties") }
-        val path = file("$buildDir/generated/sources/datadog/${target}Main/kotlin")
+        val path = layout.buildDirectory.file("generated/sources/datadog/${target}Main/kotlin").get().asFile
         val sourceFile = file("$path/DatadogClientToken.kt")
         path.createDirectory()
         sourceFile.createNewFile()
