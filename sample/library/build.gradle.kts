@@ -120,25 +120,27 @@ tasks.register("datadogClientTokens") {
     description = "Writes Datadog client tokens to Kotlin source code for use in the project"
     group = "Build"
 
-    val properties = Properties().apply {
-        load(file("$projectDir/local.properties").inputStream())
-    }
+    doFirst {
+        val properties = Properties().apply {
+            load(file("$projectDir/local.properties").inputStream())
+        }
 
-    listOf("android", "ios", "js",).forEach { target ->
-        val property = "datadog.clientToken.$target"
-        val token = properties.getOrElse(property) { error("Missing $property in $projectDir/local.properties") }
-        val path = layout.buildDirectory.file("generated/sources/datadog/${target}Main/kotlin").get().asFile
-        val sourceFile = file("$path/DatadogClientToken.kt")
-        path.createDirectory()
-        sourceFile.createNewFile()
-        sourceFile.writeText(
-            """
-            package com.juul.datadog.sample
-            
-            internal actual val DATADOG_CLIENT_TOKEN: String = "$token"
-            
-            """.trimIndent()
-        )
+        listOf("android", "ios", "js",).forEach { target ->
+            val property = "datadog.clientToken.$target"
+            val token = properties.getOrElse(property) { error("Missing $property in $projectDir/local.properties") }
+            val path = layout.buildDirectory.file("generated/sources/datadog/${target}Main/kotlin").get().asFile
+            val sourceFile = file("$path/DatadogClientToken.kt")
+            path.createDirectory()
+            sourceFile.createNewFile()
+            sourceFile.writeText(
+                """
+                package com.juul.datadog.sample
+                
+                internal actual val DATADOG_CLIENT_TOKEN: String = "$token"
+                
+                """.trimIndent()
+            )
+        }
     }
 }
 
