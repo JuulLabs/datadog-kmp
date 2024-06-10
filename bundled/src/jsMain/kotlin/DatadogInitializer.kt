@@ -11,7 +11,7 @@ public actual class DatadogInitializer actual constructor(
         initialize(Granted, onReady)
     }
 
-    override fun initialize(trackingConsent: TrackingConsent, onReady: (() -> Unit)?) {
+    actual override fun initialize(trackingConsent: TrackingConsent, onReady: (() -> Unit)?) {
         if (onReady != null) {
             datadogLogs.onReady {
                 init()
@@ -37,7 +37,7 @@ public actual class DatadogInitializer actual constructor(
         )
     }
 
-    override fun setTrackingConsent(trackingConsent: TrackingConsent) {
+    actual override fun setTrackingConsent(trackingConsent: TrackingConsent) {
         // No-op
     }
 }

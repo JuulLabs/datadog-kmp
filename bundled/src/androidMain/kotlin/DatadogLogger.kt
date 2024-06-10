@@ -33,7 +33,7 @@ public actual class DatadogLogger actual constructor(
         }
         .build()
 
-    override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         when (level) {
             Verbose -> verbose(message, attributes, throwable)
             Debug -> debug(message, attributes, throwable)
@@ -52,19 +52,19 @@ public actual class DatadogLogger actual constructor(
         logger.v(message, throwable, attributes.orEmpty())
     }
 
-    override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.d(message, throwable, attributes.orEmpty())
     }
 
-    override fun info(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun info(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.i(message, throwable, attributes.orEmpty())
     }
 
-    override fun warn(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun warn(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.w(message, throwable, attributes.orEmpty())
     }
 
-    override fun error(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun error(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.e(message, throwable, attributes.orEmpty())
     }
 
@@ -84,11 +84,11 @@ public actual class DatadogLogger actual constructor(
         logger.removeTagsWithKey(key)
     }
 
-    override fun addAttribute(key: String, value: String) {
+    actual override fun addAttribute(key: String, value: String) {
         logger.addAttribute(key, value)
     }
 
-    override fun removeAttribute(key: String) {
+    actual override fun removeAttribute(key: String) {
         logger.removeAttribute(key)
     }
 }
