@@ -17,7 +17,7 @@ public actual class DatadogLogger actual constructor(
 ) : BrowserLogger {
 
     private val logger = datadogLogs.createLogger(name, conf(level, configuration))
-    override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         when (level) {
             Verbose, Debug -> debug(message, attributes, throwable)
             Info -> info(message, attributes, throwable)
@@ -26,27 +26,27 @@ public actual class DatadogLogger actual constructor(
         }
     }
 
-    override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.debug(message, attributes?.toJsObject(), throwable)
     }
 
-    override fun info(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun info(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.info(message, attributes?.toJsObject(), throwable)
     }
 
-    override fun warn(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun warn(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.warn(message, attributes?.toJsObject(), throwable)
     }
 
-    override fun error(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun error(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         logger.error(message, attributes?.toJsObject(), throwable)
     }
 
-    override fun addAttribute(key: String, value: String) {
+    actual override fun addAttribute(key: String, value: String) {
         datadogLogs.setGlobalContextProperty(key, value)
     }
 
-    override fun removeAttribute(key: String) {
+    actual override fun removeAttribute(key: String) {
         datadogLogs.removeGlobalContextProperty(key)
     }
 }

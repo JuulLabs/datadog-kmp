@@ -19,7 +19,7 @@ public actual class DatadogInitializer(
 
     public actual constructor(configuration: Configuration) : this(configuration, NO_VARIANT)
 
-    override fun initialize(trackingConsent: TrackingConsent, onReady: (() -> Unit)?) {
+    actual override fun initialize(trackingConsent: TrackingConsent, onReady: (() -> Unit)?) {
         Datadog.initialize(
             context = applicationContext,
             configuration = configuration.toDatadogType(variant),
@@ -29,7 +29,7 @@ public actual class DatadogInitializer(
         onReady?.invoke()
     }
 
-    override fun setTrackingConsent(trackingConsent: TrackingConsent) {
+    actual override fun setTrackingConsent(trackingConsent: TrackingConsent) {
         Datadog.setTrackingConsent(trackingConsent.toDatadogType())
     }
 }

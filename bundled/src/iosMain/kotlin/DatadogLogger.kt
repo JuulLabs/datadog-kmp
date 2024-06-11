@@ -43,7 +43,7 @@ public actual class DatadogLogger actual constructor(
         }
     }
 
-    override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         when (level) {
             Verbose, Debug -> debug(message, attributes, throwable)
             Info -> info(message, attributes, throwable)
@@ -63,7 +63,7 @@ public actual class DatadogLogger actual constructor(
         }
     }
 
-    override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         val attrs = attributes.orEmpty() as Map<Any?, *>
         if (throwable == null) {
             logger.debug(message, attrs)
@@ -72,7 +72,7 @@ public actual class DatadogLogger actual constructor(
         }
     }
 
-    override fun info(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun info(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         val attrs = attributes.orEmpty() as Map<Any?, *>
         if (throwable == null) {
             logger.info(message, attrs)
@@ -81,7 +81,7 @@ public actual class DatadogLogger actual constructor(
         }
     }
 
-    override fun warn(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun warn(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         val attrs = attributes.orEmpty() as Map<Any?, *>
         if (throwable == null) {
             logger.warn(message, attrs)
@@ -90,7 +90,7 @@ public actual class DatadogLogger actual constructor(
         }
     }
 
-    override fun error(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
+    actual override fun error(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         val attrs = attributes.orEmpty() as Map<Any?, *>
         if (throwable == null) {
             logger.error(message, attrs)
@@ -115,11 +115,11 @@ public actual class DatadogLogger actual constructor(
         logger.removeTagWithKey(key)
     }
 
-    override fun addAttribute(key: String, value: String) {
+    actual override fun addAttribute(key: String, value: String) {
         logger.addAttributeForKey(key, value)
     }
 
-    override fun removeAttribute(key: String) {
+    actual override fun removeAttribute(key: String) {
         logger.removeAttributeForKey(key)
     }
 }
