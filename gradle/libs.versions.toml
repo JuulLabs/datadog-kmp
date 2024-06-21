@@ -1,7 +1,7 @@
 [versions]
 android-compile = "33"
 android-min = "21"
-datadog-android = "2.10.1"
+datadog-android = "2.11.0"
 datadog-ios = "2.0.0"
 datadog-npm = "4.45.0"
 jvm-toolchain = "11"
