@@ -3,7 +3,7 @@ android-compile = "33"
 android-min = "21"
 datadog-android = "2.11.0"
 datadog-ios = "2.0.0"
-datadog-npm = "4.45.0"
+datadog-npm = "5.22.0" // https://www.npmjs.com/package/@datadog/browser-logs
 jvm-toolchain = "11"
 
 [libraries]
