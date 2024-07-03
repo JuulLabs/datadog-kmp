@@ -35,6 +35,17 @@ kotlin {
         }
     }
 
+    // Workaround for build failure:
+    // IllegalArgumentException: '<classname>' is going to be declared twice
+    // https://youtrack.jetbrains.com/issue/KT-41709/Objective-C-Interop-CBLQueryMeta-is-going-to-be-declared-twice
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>().all {
+        compilations["main"].cinterops["DatadogObjc"].apply {
+            extraOpts("-compiler-option", "-Dchar16_t=char16_tUnavailable")
+            extraOpts("-compiler-option", "-Dchar16_tUnavailableVar=char16_tUnavailableVarUnavailable")
+            extraOpts("-compiler-option", "-DDDRUMErrorEventErrorMeta=DDRUMErrorEventErrorMetaUnavailable")
+        }
+    }
+
     sourceSets {
         all {
             all {
