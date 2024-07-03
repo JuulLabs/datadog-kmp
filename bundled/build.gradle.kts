@@ -17,7 +17,7 @@ kotlin {
     js().browser()
 
     cocoapods {
-        ios.deploymentTarget = "11.0"
+        ios.deploymentTarget = "12.0"
 
         summary = "Datadog KMP"
         homepage = "https://www.datadoghq.com"
