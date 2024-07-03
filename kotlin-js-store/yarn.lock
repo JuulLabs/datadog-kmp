@@ -7,17 +7,17 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@datadog/browser-core@4.45.0":
-  version "4.45.0"
-  resolved "https://registry.yarnpkg.com/@datadog/browser-core/-/browser-core-4.45.0.tgz#fe6ed4d2df6680746adc8ef9ec07636778de5f9c"
-  integrity sha512-w0zlk5xiZsg+1XCU5PvI9tymnGhe35j0tLWMgcuwgulKfcUHfXZlYX1NRxWrgRvpFosAi/xwY8viNA6LLSYowQ==
+"@datadog/browser-core@5.22.0":
+  version "5.22.0"
+  resolved "https://registry.yarnpkg.com/@datadog/browser-core/-/browser-core-5.22.0.tgz#d508265b4f4d2dda8eb6623c9e806372b7bf8e9c"
+  integrity sha512-Me7N+l+T5DyN4xnJmnxB93TWxj+u9YwMghvcqS3LLCxSj+fpG/aLlK9hvDG2uhZsnsQdiULrzlbjfekjijwunQ==
 
-"@datadog/browser-logs@4.45.0":
-  version "4.45.0"
-  resolved "https://registry.yarnpkg.com/@datadog/browser-logs/-/browser-logs-4.45.0.tgz#ce137a5f8453fa4043b7dfb8208f7f78701dfce4"
-  integrity sha512-EZp2L1skwyMJzu1GqYHwLJKQm4cdJrKk0oObqmyBqOBcOOQjAykMo9+Jxvo/l1HyogFhDhcJjYd8zPrqfQ1dFQ==
+"@datadog/browser-logs@5.22.0":
+  version "5.22.0"
+  resolved "https://registry.yarnpkg.com/@datadog/browser-logs/-/browser-logs-5.22.0.tgz#ae71d9a17f81a16b9e6bf07388370f5d3186fb60"
+  integrity sha512-7mXQwcwilRvhVVQj1CAs5TZgk3mgVWvPJPL/hMfdvHh8GotSp8bNK6cd6mmLtPwRc7AAtobj3Tnj/pXLNtpQlQ==
   dependencies:
-    "@datadog/browser-core" "4.45.0"
+    "@datadog/browser-core" "5.22.0"
 
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.7"
