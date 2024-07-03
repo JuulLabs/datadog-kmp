@@ -18,7 +18,8 @@ public actual class DatadogLogger actual constructor(
     configuration: LoggerConfiguration?,
 ) : JvmLogger, TagHandler {
 
-    private val logger: DatadogLogger = DatadogLogger.Builder()
+    private val logger: DatadogLogger = DatadogLogger
+        .Builder()
         .setName(name)
         .setRemoteLogThreshold(level?.toDatadogType() ?: ALL)
         .apply {
@@ -30,8 +31,7 @@ public actual class DatadogLogger actual constructor(
                 setRemoteSampleRate(configuration.remoteSampleRate)
                 setLogcatLogsEnabled(configuration.logToConsole)
             }
-        }
-        .build()
+        }.build()
 
     actual override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
         when (level) {
