@@ -35,7 +35,8 @@ public actual class DatadogInitializer(
 }
 
 private fun Configuration.toDatadogType(variant: String): DatadogConfiguration =
-    DatadogConfiguration.Builder(clientToken, environment, variant, service)
+    DatadogConfiguration
+        .Builder(clientToken, environment, variant, service)
         .useSite(site.toDatadogType())
         .build()
 
