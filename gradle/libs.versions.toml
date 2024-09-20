@@ -7,7 +7,7 @@ datadog-npm = "5.22.0" # https://www.npmjs.com/package/@datadog/browser-logs
 jvm-toolchain = "11"
 
 [libraries]
-androidx-startup = { module = "androidx.startup:startup-runtime", version = "1.1.1" }
+androidx-startup = { module = "androidx.startup:startup-runtime", version = "1.2.0" }
 datadog-logs = { module = "com.datadoghq:dd-sdk-android-logs", version.ref = "datadog-android" }
 nserrorkt = { module = "com.rickclephas.kmp:nserror-kt", version = "0.2.0" }
 
