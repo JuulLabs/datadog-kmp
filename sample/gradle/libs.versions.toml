@@ -9,7 +9,7 @@ jvm-toolchain = "11"
 kotlin = "2.0.21"
 
 [libraries]
-compose-activity = { module = "androidx.activity:activity-compose", version = "1.9.3" }
+compose-activity = { module = "androidx.activity:activity-compose", version = "1.10.0" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
 datadog-kmp = { module = "com.juul.datadog:datadog", version.ref = "datadog-kmp" }
