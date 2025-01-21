@@ -1,6 +1,6 @@
 [versions]
 agp = "8.8.0"
-android-compile = "34"
+android-compile = "35"
 android-min = "21"
 android-target = "33"
 androidx-compose = "1.7.6"
