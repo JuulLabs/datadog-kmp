@@ -1,7 +1,6 @@
 [versions]
 android-compile = "33"
 android-min = "21"
-atomicfu = "0.26.1"
 datadog-android = "2.17.0"
 datadog-ios = "2.4.0"
 datadog-npm = "5.22.0" # https://www.npmjs.com/package/@datadog/browser-logs
@@ -23,7 +22,6 @@ serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-jso
 [plugins]
 android-library = { id = "com.android.library", version = "8.8.0" }
 api = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.17.0" }
-atomicfu = { id = "org.jetbrains.kotlinx.atomicfu", version.ref = "atomicfu" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "2.1.0" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "5.0.1" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.30.0" }

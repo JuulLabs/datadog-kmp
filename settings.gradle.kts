@@ -13,5 +13,5 @@ pluginManagement {
 include(
     ":bundled",
     ":datadog",
-    ":ktor",
+    ":datadog-ktor",
 )

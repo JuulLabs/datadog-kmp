@@ -131,52 +131,18 @@ public final class com/juul/datadog/NoopLogger : com/juul/datadog/Logger {
 	public fun warn (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
 }
 
-public abstract class com/juul/datadog/Site {
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+public final class com/juul/datadog/Site : java/lang/Enum {
+	public static final field AP1 Lcom/juul/datadog/Site;
+	public static final field EU Lcom/juul/datadog/Site;
+	public static final field US1 Lcom/juul/datadog/Site;
+	public static final field US1_FED Lcom/juul/datadog/Site;
+	public static final field US3 Lcom/juul/datadog/Site;
+	public static final field US5 Lcom/juul/datadog/Site;
 	public final fun getApiHost ()Ljava/lang/String;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getLogHost ()Ljava/lang/String;
-}
-
-public final class com/juul/datadog/Site$AP1 : com/juul/datadog/Site {
-	public static final field INSTANCE Lcom/juul/datadog/Site$AP1;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/juul/datadog/Site$EU : com/juul/datadog/Site {
-	public static final field INSTANCE Lcom/juul/datadog/Site$EU;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/juul/datadog/Site$US1 : com/juul/datadog/Site {
-	public static final field INSTANCE Lcom/juul/datadog/Site$US1;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/juul/datadog/Site$US1_FED : com/juul/datadog/Site {
-	public static final field INSTANCE Lcom/juul/datadog/Site$US1_FED;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/juul/datadog/Site$US3 : com/juul/datadog/Site {
-	public static final field INSTANCE Lcom/juul/datadog/Site$US3;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/juul/datadog/Site$US5 : com/juul/datadog/Site {
-	public static final field INSTANCE Lcom/juul/datadog/Site$US5;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/juul/datadog/Site;
+	public static fun values ()[Lcom/juul/datadog/Site;
 }
 
 public abstract interface class com/juul/datadog/TagHandler {

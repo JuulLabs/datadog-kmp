@@ -1,6 +1,5 @@
 plugins {
     kotlin("multiplatform")
-    alias(libs.plugins.atomicfu)
     alias(libs.plugins.kotlinter)
     alias(libs.plugins.maven.publish)
 }

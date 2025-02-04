@@ -1,31 +1,31 @@
 package com.juul.datadog
 
-public sealed class Site(
+public enum class Site(
     public val apiHost: String,
     public val logHost: String,
 ) {
-    public data object US1 : Site(
+    US1(
         apiHost = "api.datadoghq.com",
         logHost = "http-intake.logs.datadoghq.com",
-    )
-    public data object US3 : Site(
+    ),
+    US3(
         apiHost = "api.us3.datadoghq.com",
         logHost = "http-intake.logs.us3.datadoghq.com",
-    )
-    public data object US5 : Site(
+    ),
+    US5(
         apiHost = "api.us5.datadoghq.com",
         logHost = "http-intake.logs.us5.datadoghq.com",
-    )
-    public data object EU : Site(
+    ),
+    EU(
         apiHost = "api.datadoghq.eu",
         logHost = "http-intake.logs.eu.datadoghq.com",
-    )
-    public data object AP1 : Site(
+    ),
+    AP1(
         apiHost = "api.ap1.datadoghq.com",
         logHost = "http-intake.logs.ap1.datadoghq.com",
-    )
-    public data object US1_FED : Site(
+    ),
+    US1_FED(
         apiHost = "api.ddog-gov.com",
         logHost = "http-intake.logs.ddog-gov.com",
-    )
+    ),
 }

@@ -1,9 +1,9 @@
 package com.juul.datadog.ktor
 
 import com.juul.datadog.Logger
-import kotlinx.atomicfu.locks.ReentrantLock
-import kotlinx.atomicfu.locks.withLock
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -18,35 +18,30 @@ internal class KtorLogger(
     private val config: LogConfiguration,
     private val clock: Clock = Clock.System,
 ) : RestLogger {
-
-    private val guard = ReentrantLock()
-
-    private val globalAttributeMap = mutableMapOf<String, Any?>()
-    private val keyedTagMap = mutableMapOf<String, String>()
-    private val unkeyedTags = mutableListOf<String>()
+    private val globalAttributes = MutableStateFlow(mutableMapOf<String, Any?>())
+    private val keyedTags = MutableStateFlow(mutableMapOf<String, String>())
+    private val unkeyedTags = MutableStateFlow(mutableListOf<String>())
 
     override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
-        val log = guard.withLock {
-            val tagString = keyedTagMap.entries
-                .map { (key, value) ->
-                    "$key:$value"
-                }.plus(unkeyedTags)
-                .joinToString(separator = ",")
+        val tagString = keyedTags.value.entries
+            .map { (key, value) ->
+                "$key:$value"
+            }.plus(unkeyedTags)
+            .joinToString(separator = ",")
 
-            buildJsonObject {
-                // Add global attributes
-                globalAttributeMap.forEach { entry -> put(entry.key, wrapInJsonPrimitive(entry.value)) }
-                // Add event-specific attributes
-                attributes?.forEach { entry -> put(entry.key, wrapInJsonPrimitive(entry.value)) }
-                // Add reserved attributes
-                put("message", message)
-                if (config.source != null) put("ddsource", config.source)
-                if (tagString.isNotEmpty()) put("ddtags", tagString)
-                if (config.host != null) put("hostname", config.host)
-                if (config.service != null) put("service", config.service)
-                put("status", level.name.lowercase())
-                put("timestamp", clock.now().toEpochMilliseconds())
-            }
+        val log = buildJsonObject {
+            // Add global attributes
+            globalAttributes.value.forEach { entry -> put(entry.key, wrapInJsonPrimitive(entry.value)) }
+            // Add event-specific attributes
+            attributes?.forEach { entry -> put(entry.key, wrapInJsonPrimitive(entry.value)) }
+            // Add reserved attributes
+            put("message", message)
+            if (config.source != null) put("ddsource", config.source)
+            if (tagString.isNotEmpty()) put("ddtags", tagString)
+            if (config.host != null) put("hostname", config.host)
+            if (config.service != null) put("service", config.service)
+            put("status", level.name.lowercase())
+            put("timestamp", clock.now().toEpochMilliseconds())
         }
         scope.launch { logSubmitter.submitLogs(listOf(log)) }
     }
@@ -76,38 +71,44 @@ internal class KtorLogger(
     }
 
     override fun addTag(tag: String) {
-        guard.withLock {
-            unkeyedTags.add(tag)
+        unkeyedTags.update { tags ->
+            tags.add(tag)
+            return@update tags
         }
     }
 
     override fun removeTag(tag: String) {
-        guard.withLock {
-            unkeyedTags.remove(tag)
+        unkeyedTags.update { tags ->
+            tags.remove(tag)
+            return@update tags
         }
     }
 
     override fun addTagWithKey(key: String, value: String) {
-        guard.withLock {
-            keyedTagMap[key] = value
+        keyedTags.update { tags ->
+            tags[key] = value
+            return@update tags
         }
     }
 
     override fun removeTagsWithKey(key: String) {
-        guard.withLock {
-            keyedTagMap.remove(key)
+        keyedTags.update { tags ->
+            tags.remove(key)
+            return@update tags
         }
     }
 
     override fun addAttribute(key: String, value: String) {
-        guard.withLock {
-            globalAttributeMap.put(key, value)
+        globalAttributes.update { attributes ->
+            attributes[key] = value
+            return@update attributes
         }
     }
 
     override fun removeAttribute(key: String) {
-        guard.withLock {
-            globalAttributeMap.remove(key)
+        globalAttributes.update { attributes ->
+            attributes.remove(key)
+            return@update attributes
         }
     }
 
