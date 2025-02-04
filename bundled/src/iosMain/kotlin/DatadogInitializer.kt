@@ -36,7 +36,8 @@ private fun Site.toDatadogType(): DDSite = when (this) {
     Site.US1 -> DDSite.us1()
     Site.US3 -> DDSite.us3()
     Site.US5 -> DDSite.us5()
-    Site.EU1 -> DDSite.eu1()
+    Site.AP1 -> DDSite.ap1()
+    Site.EU -> DDSite.eu1()
     Site.US1_FED -> DDSite.us1_fed()
 }
 

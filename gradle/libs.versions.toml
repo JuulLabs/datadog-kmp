@@ -1,19 +1,29 @@
 [versions]
 android-compile = "33"
 android-min = "21"
+atomicfu = "0.26.1"
 datadog-android = "2.17.0"
 datadog-ios = "2.4.0"
 datadog-npm = "5.22.0" # https://www.npmjs.com/package/@datadog/browser-logs
 jvm-toolchain = "11"
+ktor = "3.0.3"
+serialization = "1.7.3"
 
 [libraries]
 androidx-startup = { module = "androidx.startup:startup-runtime", version = "1.2.0" }
 datadog-logs = { module = "com.datadoghq:dd-sdk-android-logs", version.ref = "datadog-android" }
+datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.6.1" }
+ktor-client-content = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 nserrorkt = { module = "com.rickclephas.kmp:nserror-kt", version = "0.2.0" }
+result = { module = "com.michael-bull.kotlin-result:kotlin-result", version = "2.0.1" }
+serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
+serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 
 [plugins]
 android-library = { id = "com.android.library", version = "8.8.0" }
 api = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.17.0" }
+atomicfu = { id = "org.jetbrains.kotlinx.atomicfu", version.ref = "atomicfu" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "2.1.0" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "5.0.1" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.30.0" }
