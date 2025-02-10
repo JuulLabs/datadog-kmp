@@ -8,14 +8,6 @@ kotlin {
     explicitApi()
     jvmToolchain(libs.versions.jvm.toolchain.get().toInt())
 
-    /* common
-     * |-- js
-     * |-- macos
-     * '-- mobile
-     *     |-- ios
-     *     '-- jvm
-     */
-
     iosArm64()
     iosSimulatorArm64()
     js().browser()
@@ -29,7 +21,9 @@ kotlin {
                 api(projects.datadog)
                 api(libs.ktor.client.core)
                 implementation(libs.datetime)
+                implementation(libs.kotlinx.collections.immutable)
                 implementation(libs.ktor.client.content)
+                implementation(libs.ktor.json)
                 implementation(libs.result)
                 implementation(libs.serialization.core)
                 implementation(libs.serialization.json)

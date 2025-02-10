@@ -1,49 +1,72 @@
 package com.juul.datadog.ktor
 
+import com.github.michaelbull.result.onFailure
 import com.juul.datadog.Logger
+import com.juul.datadog.ktor.Configuration.Log
+import kotlinx.collections.immutable.PersistentMap
+import kotlinx.collections.immutable.mutate
+import kotlinx.collections.immutable.persistentHashMapOf
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.put
 
 internal class KtorLogger(
     private val scope: CoroutineScope,
     private val logSubmitter: LogSubmission,
-    private val config: LogConfiguration,
+    private val config: Log,
     private val clock: Clock = Clock.System,
 ) : RestLogger {
-    private val globalAttributes = MutableStateFlow(mutableMapOf<String, Any?>())
-    private val keyedTags = MutableStateFlow(mutableMapOf<String, String>())
-    private val unkeyedTags = MutableStateFlow(mutableListOf<String>())
+
+    private inner class LoggerState(
+        val globalAttributes: Map<String, Any?>,
+        val keyedTags: Map<String, String>,
+        val unkeyedTags: List<String>,
+    ) {
+        val tagString: String by lazy {
+            keyedTags.entries
+                .map { (key, value) ->
+                    "$key:$value"
+                }.plus(unkeyedTags)
+                .joinToString(separator = ",")
+        }
+
+        val baseLogMap: PersistentMap<String, JsonElement> by lazy {
+            persistentHashMapOf<String, JsonElement>().mutate { buffer ->
+                globalAttributes.forEach { (key, value) -> buffer[key] = wrapInJsonPrimitive(value) }
+                if (config.source != null) buffer["ddsource"] = JsonPrimitive(config.source)
+                if (tagString.isNotEmpty()) buffer["ddtags"] = JsonPrimitive(tagString)
+            }
+        }
+    }
+
+    private val state = MutableStateFlow(
+        LoggerState(emptyMap(), emptyMap(), emptyList()),
+    )
 
     override fun log(level: Logger.Level, message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
-        val tagString = keyedTags.value.entries
-            .map { (key, value) ->
-                "$key:$value"
-            }.plus(unkeyedTags)
-            .joinToString(separator = ",")
+        val log = JsonObject(
+            state.value.baseLogMap.mutate { buffer ->
+                // Add event-specific attributes
+                attributes?.forEach { (key, value) -> buffer[key] = wrapInJsonPrimitive(value) }
+                // Add reserved attributes
+                buffer["message"] = JsonPrimitive(message)
+                buffer["status"] = JsonPrimitive(level.name.lowercase())
+                buffer["timestamp"] = JsonPrimitive(clock.now().toEpochMilliseconds())
+            },
+        )
 
-        val log = buildJsonObject {
-            // Add global attributes
-            globalAttributes.value.forEach { entry -> put(entry.key, wrapInJsonPrimitive(entry.value)) }
-            // Add event-specific attributes
-            attributes?.forEach { entry -> put(entry.key, wrapInJsonPrimitive(entry.value)) }
-            // Add reserved attributes
-            put("message", message)
-            if (config.source != null) put("ddsource", config.source)
-            if (tagString.isNotEmpty()) put("ddtags", tagString)
-            if (config.host != null) put("hostname", config.host)
-            if (config.service != null) put("service", config.service)
-            put("status", level.name.lowercase())
-            put("timestamp", clock.now().toEpochMilliseconds())
+        scope.launch {
+            logSubmitter
+                .submitLogs(listOf(log))
+                .onFailure { println("Failure: ${it.message}") }
         }
-        scope.launch { logSubmitter.submitLogs(listOf(log)) }
     }
 
     override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
@@ -71,44 +94,62 @@ internal class KtorLogger(
     }
 
     override fun addTag(tag: String) {
-        unkeyedTags.update { tags ->
-            tags.add(tag)
-            return@update tags
+        state.update {
+            LoggerState(
+                it.globalAttributes,
+                it.keyedTags,
+                it.unkeyedTags + tag,
+            )
         }
     }
 
     override fun removeTag(tag: String) {
-        unkeyedTags.update { tags ->
-            tags.remove(tag)
-            return@update tags
+        state.update {
+            LoggerState(
+                it.globalAttributes,
+                it.keyedTags,
+                it.unkeyedTags - tag,
+            )
         }
     }
 
     override fun addTagWithKey(key: String, value: String) {
-        keyedTags.update { tags ->
-            tags[key] = value
-            return@update tags
+        state.update {
+            LoggerState(
+                it.globalAttributes,
+                it.keyedTags + (key to value),
+                it.unkeyedTags,
+            )
         }
     }
 
     override fun removeTagsWithKey(key: String) {
-        keyedTags.update { tags ->
-            tags.remove(key)
-            return@update tags
+        state.update {
+            LoggerState(
+                it.globalAttributes,
+                it.keyedTags - key,
+                it.unkeyedTags,
+            )
         }
     }
 
     override fun addAttribute(key: String, value: String) {
-        globalAttributes.update { attributes ->
-            attributes[key] = value
-            return@update attributes
+        state.update {
+            LoggerState(
+                it.globalAttributes + (key to value),
+                it.keyedTags,
+                it.unkeyedTags,
+            )
         }
     }
 
     override fun removeAttribute(key: String) {
-        globalAttributes.update { attributes ->
-            attributes.remove(key)
-            return@update attributes
+        state.update {
+            LoggerState(
+                it.globalAttributes - key,
+                it.keyedTags,
+                it.unkeyedTags,
+            )
         }
     }
 
