@@ -26,8 +26,7 @@ internal class DatadogLogSubmission(
         http
             .preparePost("api/v2/logs") {
                 setBody(logs)
-            }
-            .executeForResult()
+            }.executeForResult()
             .body<Unit>()
 }
 
