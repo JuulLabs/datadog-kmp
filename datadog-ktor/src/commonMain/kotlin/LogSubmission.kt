@@ -13,7 +13,7 @@ import io.ktor.client.statement.HttpStatement
 import io.ktor.http.isSuccess
 import kotlinx.serialization.json.JsonObject
 
-internal class HttpError(message: String? = null) : Throwable(message)
+internal class HttpException(message: String? = null) : Exception(message)
 
 internal interface LogSubmission {
     suspend fun submitLogs(logs: List<JsonObject>): Result<Unit, Throwable>
@@ -26,7 +26,8 @@ internal class DatadogLogSubmission(
         http
             .preparePost("api/v2/logs") {
                 setBody(logs)
-            }.executeForResult()
+            }
+            .executeForResult()
             .body<Unit>()
 }
 
@@ -36,7 +37,7 @@ internal suspend fun HttpStatement.executeForResult(): Result<HttpResponse, Thro
             if (status.isSuccess()) {
                 Ok(this)
             } else {
-                Err(HttpError("Failed to submit Datadog logs, status: $status"))
+                Err(HttpException("Failed to submit Datadog logs, status: $status"))
             }
         }
     } catch (e: Throwable) {
