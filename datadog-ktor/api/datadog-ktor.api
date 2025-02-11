@@ -1,0 +1,59 @@
+public final class com/juul/datadog/ktor/Configuration {
+	public fun <init> (Lcom/juul/datadog/ktor/Configuration$Rest;Lcom/juul/datadog/ktor/Configuration$Log;)V
+	public synthetic fun <init> (Lcom/juul/datadog/ktor/Configuration$Rest;Lcom/juul/datadog/ktor/Configuration$Log;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/juul/datadog/ktor/Configuration$Rest;
+	public final fun component2 ()Lcom/juul/datadog/ktor/Configuration$Log;
+	public final fun copy (Lcom/juul/datadog/ktor/Configuration$Rest;Lcom/juul/datadog/ktor/Configuration$Log;)Lcom/juul/datadog/ktor/Configuration;
+	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/Configuration;Lcom/juul/datadog/ktor/Configuration$Rest;Lcom/juul/datadog/ktor/Configuration$Log;ILjava/lang/Object;)Lcom/juul/datadog/ktor/Configuration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLog ()Lcom/juul/datadog/ktor/Configuration$Log;
+	public final fun getRest ()Lcom/juul/datadog/ktor/Configuration$Rest;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/juul/datadog/ktor/Configuration$Log {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/juul/datadog/ktor/Configuration$Log;
+	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/Configuration$Log;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/juul/datadog/ktor/Configuration$Log;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHost ()Ljava/lang/String;
+	public final fun getService ()Ljava/lang/String;
+	public final fun getSource ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/juul/datadog/ktor/Configuration$Rest {
+	public fun <init> (Ljava/lang/String;Lcom/juul/datadog/Site;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/juul/datadog/Site;
+	public final fun copy (Ljava/lang/String;Lcom/juul/datadog/Site;)Lcom/juul/datadog/ktor/Configuration$Rest;
+	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/Configuration$Rest;Ljava/lang/String;Lcom/juul/datadog/Site;ILjava/lang/Object;)Lcom/juul/datadog/ktor/Configuration$Rest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiKey ()Ljava/lang/String;
+	public final fun getSite ()Lcom/juul/datadog/Site;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/juul/datadog/ktor/KtorDatadogLoggerKt {
+	public static final fun ktorDatadogLogger (Lcom/juul/datadog/ktor/Configuration;Lkotlinx/coroutines/CoroutineScope;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RestLogger;
+	public static synthetic fun ktorDatadogLogger$default (Lcom/juul/datadog/ktor/Configuration;Lkotlinx/coroutines/CoroutineScope;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RestLogger;
+}
+
+public abstract interface class com/juul/datadog/ktor/RestLogger : com/juul/datadog/Logger, com/juul/datadog/TagHandler {
+	public abstract fun assert (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public abstract fun verbose (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+}
+
+public final class com/juul/datadog/ktor/RestLogger$DefaultImpls {
+	public static synthetic fun assert$default (Lcom/juul/datadog/ktor/RestLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun verbose$default (Lcom/juul/datadog/ktor/RestLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+}
+
