@@ -40,7 +40,11 @@ internal class KtorLogger(
         val baseLogMap: PersistentMap<String, JsonElement> by lazy {
             persistentHashMapOf<String, JsonElement>().mutate { buffer ->
                 globalAttributes.forEach { (key, value) -> buffer[key] = wrapInJsonPrimitive(value) }
+
                 if (config.source != null) buffer["ddsource"] = JsonPrimitive(config.source)
+                if (config.host != null) buffer["hostname"] = JsonPrimitive(config.host)
+                if (config.service != null) buffer["service"] = JsonPrimitive(config.service)
+
                 if (tagString.isNotEmpty()) buffer["ddtags"] = JsonPrimitive(tagString)
             }
         }
