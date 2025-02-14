@@ -11,7 +11,7 @@ serialization = "1.8.0"
 [libraries]
 androidx-startup = { module = "androidx.startup:startup-runtime", version = "1.2.0" }
 datadog-logs = { module = "com.datadoghq:dd-sdk-android-logs", version.ref = "datadog-android" }
-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.6.1" }
+datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.6.2" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.8" }
 ktor-client-content = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
