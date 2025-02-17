@@ -1,6 +1,5 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-import org.jetbrains.kotlin.incremental.createDirectory
 import java.util.Properties
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     // Android plugin must be before multiplatform plugin until https://youtrack.jetbrains.com/issue/KT-34038 is fixed.
@@ -130,7 +129,7 @@ tasks.register("datadogClientTokens") {
             val token = properties.getOrElse(property) { error("Missing $property in $projectDir/local.properties") }
             val path = layout.buildDirectory.file("generated/sources/datadog/${target}Main/kotlin").get().asFile
             val sourceFile = file("$path/DatadogClientToken.kt")
-            path.createDirectory()
+            path.mkdirs()
             sourceFile.createNewFile()
             sourceFile.writeText(
                 """
