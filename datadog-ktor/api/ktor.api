@@ -1,0 +1,58 @@
+public final class com/juul/datadog/ktor/DatadogKtorConfiguration {
+	public fun <init> (Lcom/juul/datadog/ktor/RestConfiguration;Lcom/juul/datadog/ktor/LogConfiguration;)V
+	public synthetic fun <init> (Lcom/juul/datadog/ktor/RestConfiguration;Lcom/juul/datadog/ktor/LogConfiguration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/juul/datadog/ktor/RestConfiguration;
+	public final fun component2 ()Lcom/juul/datadog/ktor/LogConfiguration;
+	public final fun copy (Lcom/juul/datadog/ktor/RestConfiguration;Lcom/juul/datadog/ktor/LogConfiguration;)Lcom/juul/datadog/ktor/DatadogKtorConfiguration;
+	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/DatadogKtorConfiguration;Lcom/juul/datadog/ktor/RestConfiguration;Lcom/juul/datadog/ktor/LogConfiguration;ILjava/lang/Object;)Lcom/juul/datadog/ktor/DatadogKtorConfiguration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLog ()Lcom/juul/datadog/ktor/LogConfiguration;
+	public final fun getRest ()Lcom/juul/datadog/ktor/RestConfiguration;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/juul/datadog/ktor/KtorDatadogLoggerKt {
+	public static final fun ktorDatadogLogger (Lcom/juul/datadog/ktor/DatadogKtorConfiguration;Lio/ktor/client/HttpClient;Lkotlinx/coroutines/CoroutineScope;)Lcom/juul/datadog/ktor/RestLogger;
+}
+
+public final class com/juul/datadog/ktor/LogConfiguration {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/juul/datadog/ktor/LogConfiguration;
+	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/LogConfiguration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/juul/datadog/ktor/LogConfiguration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHost ()Ljava/lang/String;
+	public final fun getService ()Ljava/lang/String;
+	public final fun getSource ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/juul/datadog/ktor/RestConfiguration {
+	public fun <init> (Ljava/lang/String;Lcom/juul/datadog/Site;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/juul/datadog/Site;
+	public final fun copy (Ljava/lang/String;Lcom/juul/datadog/Site;)Lcom/juul/datadog/ktor/RestConfiguration;
+	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/RestConfiguration;Ljava/lang/String;Lcom/juul/datadog/Site;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RestConfiguration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiKey ()Ljava/lang/String;
+	public final fun getSite ()Lcom/juul/datadog/Site;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/juul/datadog/ktor/RestLogger : com/juul/datadog/Logger, com/juul/datadog/TagHandler {
+	public abstract fun assert (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public abstract fun verbose (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+}
+
+public final class com/juul/datadog/ktor/RestLogger$DefaultImpls {
+	public static synthetic fun assert$default (Lcom/juul/datadog/ktor/RestLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun verbose$default (Lcom/juul/datadog/ktor/RestLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
+}
+

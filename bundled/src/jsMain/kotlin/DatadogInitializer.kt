@@ -46,6 +46,7 @@ private fun Site.toDatadogType(): String = when (this) {
     Site.US1 -> "datadoghq.com"
     Site.US3 -> "us3.datadoghq.com"
     Site.US5 -> "us5.datadoghq.com"
-    Site.EU1 -> "datadoghq.eu"
+    Site.AP1 -> "ap1.datadoghq.com"
+    Site.EU -> "datadoghq.eu"
     Site.US1_FED -> "ddog-gov.com"
 }
