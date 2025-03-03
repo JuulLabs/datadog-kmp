@@ -67,7 +67,7 @@ private extension SampleLibrary.Site {
             return DatadogSite.us3
         case SampleLibrary.Site.us5:
             return DatadogSite.us5
-        case SampleLibrary.Site.eu1:
+        case SampleLibrary.Site.eu:
             return DatadogSite.eu1
         case SampleLibrary.Site.us1Fed:
             return DatadogSite.us1_fed
