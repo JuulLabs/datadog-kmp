@@ -17,7 +17,7 @@ kotlin {
     js().browser()
 
     cocoapods {
-        ios.deploymentTarget = "11.0"
+        ios.deploymentTarget = "12.0"
 
         summary = "Datadog KMP"
         homepage = "https://www.datadoghq.com"
@@ -32,6 +32,17 @@ kotlin {
         pod("DatadogCore") {
             version = "~> ${libs.versions.datadog.ios.get()}"
             extraOpts += listOf("-compiler-option", "-fmodules")
+        }
+    }
+
+    // Workaround for build failure:
+    // IllegalArgumentException: '<classname>' is going to be declared twice
+    // https://youtrack.jetbrains.com/issue/KT-41709/Objective-C-Interop-CBLQueryMeta-is-going-to-be-declared-twice
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>().all {
+        compilations["main"].cinterops["DatadogObjc"].apply {
+            extraOpts("-compiler-option", "-Dchar16_t=char16_tUnavailable")
+            extraOpts("-compiler-option", "-Dchar16_tUnavailableVar=char16_tUnavailableVarUnavailable")
+            extraOpts("-compiler-option", "-DDDRUMErrorEventErrorMeta=DDRUMErrorEventErrorMetaUnavailable")
         }
     }
 
