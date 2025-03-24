@@ -28,7 +28,7 @@ jobs:
           TEXTFILE
 
       - run: ./gradlew assemble
-      - run: ./gradlew jsBrowserWebpack
+      - run: ./gradlew jsBrowserDevelopmentWebpack
 
       - run: brew install xcodegen
 
