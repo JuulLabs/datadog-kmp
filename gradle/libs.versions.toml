@@ -22,7 +22,7 @@ serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cor
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 
 [plugins]
-android-library = { id = "com.android.library", version = "8.9.0" }
+android-library = { id = "com.android.library", version = "8.9.1" }
 api = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.17.0" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "2.1.20" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "5.0.1" }
