@@ -42,9 +42,15 @@ public final class com/juul/datadog/ktor/Configuration$Rest {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/juul/datadog/ktor/KtorDatadogLoggerKt {
-	public static final fun ktorDatadogLogger (Lcom/juul/datadog/ktor/Configuration;Lkotlinx/coroutines/CoroutineScope;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RestLogger;
-	public static synthetic fun ktorDatadogLogger$default (Lcom/juul/datadog/ktor/Configuration;Lkotlinx/coroutines/CoroutineScope;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RestLogger;
+public final class com/juul/datadog/ktor/DatadogHttpUploaderKt {
+	public static final fun datadogHttpUploader (Lcom/juul/datadog/ktor/Configuration$Rest;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RawUploader;
+	public static final fun datadogHttpUploader (Lcom/juul/datadog/ktor/Configuration$Rest;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RawUploader;
+	public static synthetic fun datadogHttpUploader$default (Lcom/juul/datadog/ktor/Configuration$Rest;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RawUploader;
+	public static synthetic fun datadogHttpUploader$default (Lcom/juul/datadog/ktor/Configuration$Rest;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RawUploader;
+}
+
+public final class com/juul/datadog/ktor/RawUploader {
+	public final fun send-T3BZVFY (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class com/juul/datadog/ktor/RestLogger : com/juul/datadog/Logger, com/juul/datadog/TagHandler {
