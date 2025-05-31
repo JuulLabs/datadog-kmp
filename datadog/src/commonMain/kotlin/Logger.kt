@@ -12,7 +12,12 @@ public interface Logger {
     public fun removeAttribute(key: String)
 
     public enum class Level {
+        @Deprecated(
+            "Removed. Use Debug.",
+            replaceWith = ReplaceWith("Debug"),
+        )
         Verbose, // Android only, maps to Debug on iOS & JS.
+
         Debug,
         Info,
         Notice, // iOS only, maps to Warn on Android & JS.

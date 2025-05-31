@@ -1,6 +1,6 @@
 package com.juul.datadog
 
-import android.util.Log
+import com.datadog.kmp.log.LogLevel
 import com.juul.datadog.Logger.Level.Assert
 import com.juul.datadog.Logger.Level.Debug
 import com.juul.datadog.Logger.Level.Error
@@ -8,9 +8,7 @@ import com.juul.datadog.Logger.Level.Info
 import com.juul.datadog.Logger.Level.Notice
 import com.juul.datadog.Logger.Level.Verbose
 import com.juul.datadog.Logger.Level.Warn
-import com.datadog.android.log.Logger as DatadogLogger
-
-private const val ALL = -1
+import com.datadog.kmp.log.Logger as DatadogMultiplatformLogger
 
 public actual class DatadogLogger actual constructor(
     name: String,
@@ -18,10 +16,10 @@ public actual class DatadogLogger actual constructor(
     configuration: LoggerConfiguration?,
 ) : JvmLogger, TagHandler {
 
-    private val logger: DatadogLogger = DatadogLogger
+    private val logger: DatadogMultiplatformLogger = DatadogMultiplatformLogger
         .Builder()
         .setName(name)
-        .setRemoteLogThreshold(level?.toDatadogType() ?: ALL)
+        .setRemoteLogThreshold(level?.toDatadogType() ?: LogLevel.CRITICAL)
         .apply {
             if (configuration != null) {
                 configuration.serviceName?.let(::setService)
@@ -29,7 +27,7 @@ public actual class DatadogLogger actual constructor(
                 setBundleWithRumEnabled(configuration.bundleWithRumEnabled)
                 setBundleWithTraceEnabled(configuration.bundleWithTraceEnabled)
                 setRemoteSampleRate(configuration.remoteSampleRate)
-                setLogcatLogsEnabled(configuration.logToConsole)
+                setPrintLogsToConsole(configuration.logToConsole)
             }
         }.build()
 
@@ -45,27 +43,31 @@ public actual class DatadogLogger actual constructor(
     }
 
     override fun assert(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
-        logger.wtf(message, throwable, attributes.orEmpty())
+        logger.critical(message, throwable, attributes.orEmpty())
     }
 
+    @Deprecated(
+        "Removed. Use `debug`.",
+        replaceWith = ReplaceWith("debug(message, attributes, throwable)"),
+    )
     override fun verbose(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
-        logger.v(message, throwable, attributes.orEmpty())
+        debug(message, attributes.orEmpty(), throwable)
     }
 
     actual override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
-        logger.d(message, throwable, attributes.orEmpty())
+        logger.debug(message, throwable, attributes.orEmpty())
     }
 
     actual override fun info(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
-        logger.i(message, throwable, attributes.orEmpty())
+        logger.info(message, throwable, attributes.orEmpty())
     }
 
     actual override fun warn(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
-        logger.w(message, throwable, attributes.orEmpty())
+        logger.warn(message, throwable, attributes.orEmpty())
     }
 
     actual override fun error(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
-        logger.e(message, throwable, attributes.orEmpty())
+        logger.error(message, throwable, attributes.orEmpty())
     }
 
     override fun addTag(tag: String) {
@@ -93,11 +95,11 @@ public actual class DatadogLogger actual constructor(
     }
 }
 
-private fun Logger.Level.toDatadogType(): Int = when (this) {
-    Verbose -> Log.VERBOSE
-    Debug -> Log.DEBUG
-    Info -> Log.INFO
-    Notice, Warn -> Log.WARN
-    Error -> Log.ERROR
-    Assert -> Log.ASSERT
+private fun Logger.Level.toDatadogType(): LogLevel = when (this) {
+    Verbose -> LogLevel.DEBUG
+    Debug -> LogLevel.DEBUG
+    Info -> LogLevel.INFO
+    Notice, Warn -> LogLevel.WARN
+    Error -> LogLevel.ERROR
+    Assert -> LogLevel.CRITICAL
 }

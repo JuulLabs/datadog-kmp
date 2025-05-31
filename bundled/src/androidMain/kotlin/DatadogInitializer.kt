@@ -1,11 +1,11 @@
 package com.juul.datadog
 
-import com.datadog.android.Datadog
-import com.datadog.android.DatadogSite
-import com.datadog.android.log.Logs
-import com.datadog.android.log.LogsConfiguration
-import com.datadog.android.core.configuration.Configuration as DatadogConfiguration
-import com.datadog.android.privacy.TrackingConsent as DatadogTrackingConsent
+import com.datadog.kmp.Datadog
+import com.datadog.kmp.DatadogSite
+import com.datadog.kmp.log.Logs
+import com.datadog.kmp.log.configuration.LogsConfiguration
+import com.datadog.kmp.core.configuration.Configuration as DatadogConfiguration
+import com.datadog.kmp.privacy.TrackingConsent as DatadogTrackingConsent
 
 private const val NO_VARIANT = ""
 
