@@ -24,4 +24,10 @@ public class InMemoryRawBuffer : RawBuffer {
             logs.toList()
         }
     }
+
+    override fun clear() {
+        synchronized(lock) {
+            buffer.clear()
+        }
+    }
 }

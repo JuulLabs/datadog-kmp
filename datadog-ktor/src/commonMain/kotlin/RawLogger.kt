@@ -15,7 +15,7 @@ import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 
-internal class RawLogger(
+public class RawLogger(
     private val sink: RawSink,
     private val config: Log,
     private val clock: Clock = Clock.System,
