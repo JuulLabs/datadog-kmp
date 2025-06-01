@@ -1,5 +1,6 @@
 package com.juul.datadog.ktor
 
+import com.github.michaelbull.result.onFailure
 import com.juul.datadog.RawSource
 import com.juul.datadog.TrackingConsent
 import com.juul.datadog.TrackingConsent.Granted
@@ -30,14 +31,14 @@ public class RawBatchUploader(
         state.value = trackingConsent
     }
 
-    public fun launchIn(scope: CoroutineScope) {
+    public fun launchIn(scope: CoroutineScope, onFailure: (Throwable) -> Unit) {
         var job: Job? = null
         state
             .onEach {
                 job?.cancelAndJoin()
                 job = null
                 when (it) {
-                    Granted -> job = scope.launchUpload()
+                    Granted -> job = scope.launchUpload(onFailure)
                     NotGranted -> source.clear()
                     Pending -> { /* No-op */ }
                 }
@@ -45,11 +46,13 @@ public class RawBatchUploader(
             .launchIn(scope)
     }
 
-    private fun CoroutineScope.launchUpload(): Job = launch {
+    private fun CoroutineScope.launchUpload(onFailure: (Throwable) -> Unit): Job = launch {
         while (coroutineContext.isActive) {
             val batch = source.remove(batchSize)
             if (batch.isNotEmpty()) {
-                uploader.send(batch)
+                uploader
+                    .send(batch)
+                    .onFailure(onFailure)
             }
             delay(uploadInterval)
         }
