@@ -1,15 +1,13 @@
 package com.juul.datadog.ktor
 
-import com.github.michaelbull.result.onFailure
 import com.juul.datadog.Logger
+import com.juul.datadog.RawSink
 import com.juul.datadog.ktor.Configuration.Log
 import kotlinx.collections.immutable.PersistentMap
 import kotlinx.collections.immutable.mutate
 import kotlinx.collections.immutable.persistentHashMapOf
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.JsonElement
@@ -17,9 +15,8 @@ import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 
-internal class KtorLogger(
-    private val scope: CoroutineScope,
-    private val logSubmitter: LogSubmission,
+public class RawLogger(
+    private val sink: RawSink,
     private val config: Log,
     private val clock: Clock = Clock.System,
 ) : RestLogger {
@@ -64,12 +61,7 @@ internal class KtorLogger(
                 buffer["timestamp"] = JsonPrimitive(clock.now().toEpochMilliseconds())
             },
         )
-
-        scope.launch {
-            logSubmitter
-                .submitLogs(listOf(log))
-                .onFailure { println("Failure: ${it.message}") }
-        }
+        sink.add(log)
     }
 
     override fun debug(message: String, attributes: Map<String, Any?>?, throwable: Throwable?) {
