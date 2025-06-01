@@ -19,7 +19,6 @@ ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 nserrorkt = { module = "com.rickclephas.kmp:nserror-kt", version = "0.2.0" }
 result = { module = "com.michael-bull.kotlin-result:kotlin-result", version = "2.0.1" }
-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 
 [plugins]
