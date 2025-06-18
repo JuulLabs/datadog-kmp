@@ -1,92 +1,62 @@
 plugins {
-    // Android plugin must be before multiplatform plugin until https://youtrack.jetbrains.com/issue/KT-34038 is fixed.
     alias(libs.plugins.android.library)
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
     alias(libs.plugins.kotlinter)
     alias(libs.plugins.maven.publish)
+    kotlin("multiplatform")
 }
 
 kotlin {
     explicitApi()
     jvmToolchain(libs.versions.jvm.toolchain.get().toInt())
 
+    // Platforms supported by https://github.com/DataDog/dd-sdk-kotlin-multiplatform:
     androidTarget().publishAllLibraryVariants()
+    iosX64()
     iosArm64()
     iosSimulatorArm64()
+
+    // Platforms not supported by https://github.com/DataDog/dd-sdk-kotlin-multiplatform:
     js().browser()
 
-    cocoapods {
-        ios.deploymentTarget = "11.0"
-
-        summary = "Datadog KMP"
-        homepage = "https://www.datadoghq.com"
-        version = (project.version as String)
-            .takeUnless { it == Project.DEFAULT_VERSION }
-            ?: "0.0.1-dev"
-
-        pod("DatadogObjc") {
-            version = "~> ${libs.versions.datadog.ios.get()}"
-            extraOpts += listOf("-compiler-option", "-fmodules")
-        }
-        pod("DatadogCore") {
-            version = "~> ${libs.versions.datadog.ios.get()}"
-            extraOpts += listOf("-compiler-option", "-fmodules")
-        }
-    }
+    applyDefaultHierarchyTemplate()
 
     sourceSets {
         all {
-            all {
-                languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
-            }
+            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
         }
 
-        val commonMain by getting {
+        commonMain.dependencies {
+            api(projects.datadog)
+        }
+
+        commonTest.dependencies {
+            implementation(kotlin("test-common"))
+            implementation(kotlin("test-annotations-common"))
+        }
+
+        val datadogMain by creating {
+            dependsOn(commonMain.get())
             dependencies {
-                api(projects.datadog)
+                api(libs.datadog.multiplatform.logs)
             }
         }
 
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-            }
+        androidMain.get().dependsOn(datadogMain)
+        androidMain.dependencies {
+            implementation(libs.androidx.startup)
         }
 
-        val androidMain by getting {
-            dependencies {
-                api(libs.datadog.logs)
-                implementation(libs.androidx.startup)
-            }
+        iosMain.get().dependsOn(datadogMain)
+        iosMain.dependencies {
+            implementation(libs.nserrorkt)
         }
 
-        val jsMain by getting {
-            dependencies {
-                implementation(npm("@datadog/browser-logs", libs.versions.datadog.npm.get()))
-            }
+        jsMain.dependencies {
+            implementation(npm("@datadog/browser-logs", libs.versions.datadog.npm.get()))
         }
 
-        val jsTest by getting {
-            dependencies {
-                implementation(kotlin("test-js"))
-            }
-        }
-
-        val iosMain by creating {
-            dependsOn(commonMain)
-            dependencies {
-                implementation(libs.nserrorkt)
-            }
-        }
-
-        val iosArm64Main by getting {
-            dependsOn(iosMain)
-        }
-
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
+        jsTest.dependencies {
+            implementation(kotlin("test-js"))
         }
     }
 }
@@ -102,16 +72,5 @@ android {
         warningsAsErrors = true
         disable += "AndroidGradlePluginVersion"
         disable += "GradleDependency"
-    }
-}
-
-// Workaround for missing Datadog imports for Datadog 1.x, or missing symbols for Datadog 2.x.
-// https://youtrack.jetbrains.com/issue/KT-44724
-tasks.named<org.jetbrains.kotlin.gradle.tasks.DefFileTask>("generateDefDatadogObjc").configure {
-    doLast {
-        outputFile.writeText("""
-            language = Objective-C
-            modules = DatadogInternal DatadogObjc
-        """)
     }
 }
