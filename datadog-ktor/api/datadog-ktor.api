@@ -42,9 +42,40 @@ public final class com/juul/datadog/ktor/Configuration$Rest {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/juul/datadog/ktor/KtorDatadogLoggerKt {
-	public static final fun ktorDatadogLogger (Lcom/juul/datadog/ktor/Configuration;Lkotlinx/coroutines/CoroutineScope;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RestLogger;
-	public static synthetic fun ktorDatadogLogger$default (Lcom/juul/datadog/ktor/Configuration;Lkotlinx/coroutines/CoroutineScope;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RestLogger;
+public final class com/juul/datadog/ktor/RawBatchUploader {
+	public synthetic fun <init> (Lcom/juul/datadog/RawSource;Lcom/juul/datadog/ktor/RawUploader;JIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/juul/datadog/RawSource;Lcom/juul/datadog/ktor/RawUploader;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun launchIn (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;)V
+	public final fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
+}
+
+public final class com/juul/datadog/ktor/RawLogger : com/juul/datadog/ktor/RestLogger {
+	public fun <init> (Lcom/juul/datadog/RawSink;Lcom/juul/datadog/ktor/Configuration$Log;Lkotlinx/datetime/Clock;)V
+	public synthetic fun <init> (Lcom/juul/datadog/RawSink;Lcom/juul/datadog/ktor/Configuration$Log;Lkotlinx/datetime/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun addAttribute (Ljava/lang/String;Ljava/lang/String;)V
+	public fun addTag (Ljava/lang/String;)V
+	public fun addTagWithKey (Ljava/lang/String;Ljava/lang/String;)V
+	public fun assert (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun debug (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun error (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun info (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun log (Lcom/juul/datadog/Logger$Level;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun removeAttribute (Ljava/lang/String;)V
+	public fun removeTag (Ljava/lang/String;)V
+	public fun removeTagsWithKey (Ljava/lang/String;)V
+	public fun verbose (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public fun warn (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+}
+
+public final class com/juul/datadog/ktor/RawUploader {
+	public final fun send-T3BZVFY (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/juul/datadog/ktor/RawUploaderKt {
+	public static final fun RawUploader (Lcom/juul/datadog/ktor/Configuration$Rest;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RawUploader;
+	public static final fun RawUploader (Lcom/juul/datadog/ktor/Configuration$Rest;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RawUploader;
+	public static synthetic fun RawUploader$default (Lcom/juul/datadog/ktor/Configuration$Rest;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RawUploader;
+	public static synthetic fun RawUploader$default (Lcom/juul/datadog/ktor/Configuration$Rest;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RawUploader;
 }
 
 public abstract interface class com/juul/datadog/ktor/RestLogger : com/juul/datadog/Logger, com/juul/datadog/TagHandler {
