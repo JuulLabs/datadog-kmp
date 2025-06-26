@@ -51,6 +51,7 @@ public final class com/juul/datadog/InMemoryRawBuffer : com/juul/datadog/RawBuff
 
 public abstract interface class com/juul/datadog/Initializer {
 	public abstract fun initialize (Lcom/juul/datadog/TrackingConsent;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun initialize$default (Lcom/juul/datadog/Initializer;Lcom/juul/datadog/TrackingConsent;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
 	public abstract fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
 }
 
@@ -60,7 +61,9 @@ public final class com/juul/datadog/Initializer$DefaultImpls {
 
 public abstract interface class com/juul/datadog/JvmLogger : com/juul/datadog/Logger {
 	public abstract fun assert (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public static synthetic fun assert$default (Lcom/juul/datadog/JvmLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public abstract fun verbose (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public static synthetic fun verbose$default (Lcom/juul/datadog/JvmLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 }
 
 public final class com/juul/datadog/JvmLogger$DefaultImpls {
@@ -71,11 +74,16 @@ public final class com/juul/datadog/JvmLogger$DefaultImpls {
 public abstract interface class com/juul/datadog/Logger {
 	public abstract fun addAttribute (Ljava/lang/String;Ljava/lang/String;)V
 	public abstract fun debug (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public static synthetic fun debug$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public abstract fun error (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public static synthetic fun error$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public abstract fun info (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public static synthetic fun info$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public abstract fun log (Lcom/juul/datadog/Logger$Level;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public static synthetic fun log$default (Lcom/juul/datadog/Logger;Lcom/juul/datadog/Logger$Level;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public abstract fun removeAttribute (Ljava/lang/String;)V
 	public abstract fun warn (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public static synthetic fun warn$default (Lcom/juul/datadog/Logger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 }
 
 public final class com/juul/datadog/Logger$DefaultImpls {
