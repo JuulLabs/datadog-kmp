@@ -19,8 +19,10 @@ public actual class DatadogLogger actual constructor(
     private val logger: DatadogMultiplatformLogger = DatadogMultiplatformLogger
         .Builder()
         .setName(name)
-        .setRemoteLogThreshold(level?.toDatadogType() ?: LogLevel.CRITICAL)
         .apply {
+            if (level != null) {
+                setRemoteLogThreshold(level.toDatadogType())
+            }
             if (configuration != null) {
                 configuration.serviceName?.let(::setService)
                 setNetworkInfoEnabled(configuration.networkInfoEnabled)

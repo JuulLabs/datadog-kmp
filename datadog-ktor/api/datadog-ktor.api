@@ -80,7 +80,9 @@ public final class com/juul/datadog/ktor/RawUploaderKt {
 
 public abstract interface class com/juul/datadog/ktor/RestLogger : com/juul/datadog/Logger, com/juul/datadog/TagHandler {
 	public abstract fun assert (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public static synthetic fun assert$default (Lcom/juul/datadog/ktor/RestLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 	public abstract fun verbose (Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;)V
+	public static synthetic fun verbose$default (Lcom/juul/datadog/ktor/RestLogger;Ljava/lang/String;Ljava/util/Map;Ljava/lang/Throwable;ILjava/lang/Object;)V
 }
 
 public final class com/juul/datadog/ktor/RestLogger$DefaultImpls {
