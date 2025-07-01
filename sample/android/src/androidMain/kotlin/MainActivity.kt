@@ -15,7 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.datadog.android.Datadog
+import com.datadog.kmp.Datadog
 import com.juul.datadog.sample.info
 import com.juul.datadog.sample.testException
 
