@@ -1,5 +1,6 @@
 import java.util.Properties
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     // Android plugin must be before multiplatform plugin until https://youtrack.jetbrains.com/issue/KT-34038 is fixed.
@@ -28,7 +29,7 @@ kotlin {
      * '-- ios
      */
 
-    androidTarget().publishAllLibraryVariants()
+    androidTarget().publishLibraryVariants("debug", "release")
     iosArm64()
     iosSimulatorArm64()
     js().browser()
@@ -143,7 +144,7 @@ tasks.register("datadogClientTokens") {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>> {
+tasks.withType<KotlinCompilationTask<*>> {
     dependsOn("datadogClientTokens")
     shouldRunAfter("clean")
 }
