@@ -50,8 +50,8 @@ public final class com/juul/datadog/ktor/RawBatchUploader {
 }
 
 public final class com/juul/datadog/ktor/RawLogger : com/juul/datadog/ktor/RestLogger {
-	public fun <init> (Lcom/juul/datadog/RawSink;Lcom/juul/datadog/ktor/Configuration$Log;Lkotlinx/datetime/Clock;)V
-	public synthetic fun <init> (Lcom/juul/datadog/RawSink;Lcom/juul/datadog/ktor/Configuration$Log;Lkotlinx/datetime/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lcom/juul/datadog/RawSink;Lcom/juul/datadog/ktor/Configuration$Log;Lkotlin/time/Clock;)V
+	public synthetic fun <init> (Lcom/juul/datadog/RawSink;Lcom/juul/datadog/ktor/Configuration$Log;Lkotlin/time/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun addAttribute (Ljava/lang/String;Ljava/lang/String;)V
 	public fun addTag (Ljava/lang/String;)V
 	public fun addTagWithKey (Ljava/lang/String;Ljava/lang/String;)V
