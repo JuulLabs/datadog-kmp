@@ -17,6 +17,10 @@ kotlin {
     macosX64()
 
     sourceSets {
+        all {
+            languageSettings.optIn("kotlin.time.ExperimentalTime")
+        }
+
         commonMain.dependencies {
             api(projects.datadog)
             api(libs.ktor.client.core)
