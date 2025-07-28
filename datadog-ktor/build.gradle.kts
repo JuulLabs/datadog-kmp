@@ -24,7 +24,6 @@ kotlin {
         commonMain.dependencies {
             api(projects.datadog)
             api(libs.ktor.client.core)
-            implementation(libs.datetime)
             implementation(libs.kotlinx.collections.immutable)
             implementation(libs.ktor.client.content)
             implementation(libs.ktor.json)
