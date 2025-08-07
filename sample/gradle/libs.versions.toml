@@ -29,4 +29,4 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "5.2.0" }
-swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version = "2.2.4" }
+swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version = "2.3.0" }
