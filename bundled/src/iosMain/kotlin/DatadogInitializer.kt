@@ -16,7 +16,7 @@ public actual class DatadogInitializer actual constructor(
             DDConfiguration(configuration),
             trackingConsent.toDatadogType(),
         )
-        if (configuration.features.logs) DDLogs.enableWith(DDLogsConfiguration())
+        if (configuration.features.logs) DDLogs.enableWith(DDLogsConfiguration(null))
         onReady?.invoke()
     }
 
