@@ -20,6 +20,8 @@ kotlin {
 
     applyDefaultHierarchyTemplate()
 
+    // wasmJs not currently supported; use ktor implementation
+
     sourceSets {
         all {
             languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")

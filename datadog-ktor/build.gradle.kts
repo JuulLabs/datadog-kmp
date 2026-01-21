@@ -15,6 +15,7 @@ kotlin {
     jvm()
     macosArm64()
     macosX64()
+    wasmJs().browser()
 
     sourceSets {
         all {

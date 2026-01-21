@@ -1,11 +1,3 @@
-# DEPRECATED
-
-> [!IMPORTANT]
-> This library has been deprecated in favor of [official support](https://github.com/DataDog/dd-sdk-kotlin-multiplatform).
-
-<details>
-<summary>Previous README</summary>
-
 # Datadog KMP (Kotlin Multiplatform)
 
 Datadog KMP provides a unified [Datadog] API for use in Kotlin multiplatform projects.
@@ -53,7 +45,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-</details>
 
 
 [Datadog]: https://www.datadoghq.com/
