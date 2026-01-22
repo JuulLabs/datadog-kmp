@@ -1,13 +1,43 @@
 public final class com/juul/datadog/ktor/Configuration {
-	public fun <init> (Lcom/juul/datadog/ktor/Configuration$Rest;Lcom/juul/datadog/ktor/Configuration$Log;)V
-	public synthetic fun <init> (Lcom/juul/datadog/ktor/Configuration$Rest;Lcom/juul/datadog/ktor/Configuration$Log;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Lcom/juul/datadog/ktor/Configuration$Rest;
+	public fun <init> (Lcom/juul/datadog/ktor/Configuration$Endpoint;Lcom/juul/datadog/ktor/Configuration$Log;)V
+	public synthetic fun <init> (Lcom/juul/datadog/ktor/Configuration$Endpoint;Lcom/juul/datadog/ktor/Configuration$Log;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/juul/datadog/ktor/Configuration$Endpoint;
 	public final fun component2 ()Lcom/juul/datadog/ktor/Configuration$Log;
-	public final fun copy (Lcom/juul/datadog/ktor/Configuration$Rest;Lcom/juul/datadog/ktor/Configuration$Log;)Lcom/juul/datadog/ktor/Configuration;
-	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/Configuration;Lcom/juul/datadog/ktor/Configuration$Rest;Lcom/juul/datadog/ktor/Configuration$Log;ILjava/lang/Object;)Lcom/juul/datadog/ktor/Configuration;
+	public final fun copy (Lcom/juul/datadog/ktor/Configuration$Endpoint;Lcom/juul/datadog/ktor/Configuration$Log;)Lcom/juul/datadog/ktor/Configuration;
+	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/Configuration;Lcom/juul/datadog/ktor/Configuration$Endpoint;Lcom/juul/datadog/ktor/Configuration$Log;ILjava/lang/Object;)Lcom/juul/datadog/ktor/Configuration;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEndpoint ()Lcom/juul/datadog/ktor/Configuration$Endpoint;
 	public final fun getLog ()Lcom/juul/datadog/ktor/Configuration$Log;
-	public final fun getRest ()Lcom/juul/datadog/ktor/Configuration$Rest;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/juul/datadog/ktor/Configuration$Endpoint {
+	public abstract fun getSite ()Lcom/juul/datadog/Site;
+}
+
+public final class com/juul/datadog/ktor/Configuration$Endpoint$BrowserIntake : com/juul/datadog/ktor/Configuration$Endpoint {
+	public fun <init> (Lcom/juul/datadog/Site;Ljava/lang/String;)V
+	public final fun component1 ()Lcom/juul/datadog/Site;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lcom/juul/datadog/Site;Ljava/lang/String;)Lcom/juul/datadog/ktor/Configuration$Endpoint$BrowserIntake;
+	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/Configuration$Endpoint$BrowserIntake;Lcom/juul/datadog/Site;Ljava/lang/String;ILjava/lang/Object;)Lcom/juul/datadog/ktor/Configuration$Endpoint$BrowserIntake;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClientToken ()Ljava/lang/String;
+	public fun getSite ()Lcom/juul/datadog/Site;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/juul/datadog/ktor/Configuration$Endpoint$Rest : com/juul/datadog/ktor/Configuration$Endpoint {
+	public fun <init> (Lcom/juul/datadog/Site;Ljava/lang/String;)V
+	public final fun component1 ()Lcom/juul/datadog/Site;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lcom/juul/datadog/Site;Ljava/lang/String;)Lcom/juul/datadog/ktor/Configuration$Endpoint$Rest;
+	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/Configuration$Endpoint$Rest;Lcom/juul/datadog/Site;Ljava/lang/String;ILjava/lang/Object;)Lcom/juul/datadog/ktor/Configuration$Endpoint$Rest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiKey ()Ljava/lang/String;
+	public fun getSite ()Lcom/juul/datadog/Site;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -72,10 +102,10 @@ public final class com/juul/datadog/ktor/RawUploader {
 }
 
 public final class com/juul/datadog/ktor/RawUploaderKt {
-	public static final fun RawUploader (Lcom/juul/datadog/ktor/Configuration$Rest;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RawUploader;
-	public static final fun RawUploader (Lcom/juul/datadog/ktor/Configuration$Rest;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RawUploader;
-	public static synthetic fun RawUploader$default (Lcom/juul/datadog/ktor/Configuration$Rest;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RawUploader;
-	public static synthetic fun RawUploader$default (Lcom/juul/datadog/ktor/Configuration$Rest;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RawUploader;
+	public static final fun RawUploader (Lcom/juul/datadog/ktor/Configuration$Endpoint;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RawUploader;
+	public static final fun RawUploader (Lcom/juul/datadog/ktor/Configuration$Endpoint;Lkotlin/jvm/functions/Function1;)Lcom/juul/datadog/ktor/RawUploader;
+	public static synthetic fun RawUploader$default (Lcom/juul/datadog/ktor/Configuration$Endpoint;Lio/ktor/client/engine/HttpClientEngineFactory;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RawUploader;
+	public static synthetic fun RawUploader$default (Lcom/juul/datadog/ktor/Configuration$Endpoint;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/juul/datadog/ktor/RawUploader;
 }
 
 public abstract interface class com/juul/datadog/ktor/RestLogger : com/juul/datadog/Logger, com/juul/datadog/TagHandler {
