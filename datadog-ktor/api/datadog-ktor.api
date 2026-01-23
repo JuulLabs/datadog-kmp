@@ -59,19 +59,6 @@ public final class com/juul/datadog/ktor/Configuration$Log {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/juul/datadog/ktor/Configuration$Rest {
-	public fun <init> (Ljava/lang/String;Lcom/juul/datadog/Site;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Lcom/juul/datadog/Site;
-	public final fun copy (Ljava/lang/String;Lcom/juul/datadog/Site;)Lcom/juul/datadog/ktor/Configuration$Rest;
-	public static synthetic fun copy$default (Lcom/juul/datadog/ktor/Configuration$Rest;Ljava/lang/String;Lcom/juul/datadog/Site;ILjava/lang/Object;)Lcom/juul/datadog/ktor/Configuration$Rest;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getApiKey ()Ljava/lang/String;
-	public final fun getSite ()Lcom/juul/datadog/Site;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
 public final class com/juul/datadog/ktor/RawBatchUploader {
 	public synthetic fun <init> (Lcom/juul/datadog/RawSource;Lcom/juul/datadog/ktor/RawUploader;JIILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Lcom/juul/datadog/RawSource;Lcom/juul/datadog/ktor/RawUploader;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
