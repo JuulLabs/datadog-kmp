@@ -7,6 +7,11 @@ public data class Configuration(
     public val log: Log = Log(),
 ) {
 
+    /**
+     * Configures the URL and authentication scheme to use. Generally, [Rest] should by used by backends
+     * (as it uses a fully-fledged API token, which is not considered safe to expose to clients). Use
+     * [BrowserIntake] for web clients, which uses a "client token" much like the bundled libraries.
+     */
     public sealed interface Endpoint {
         public val site: Site
 
