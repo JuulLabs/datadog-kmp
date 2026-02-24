@@ -40,7 +40,7 @@ public class RawBatchUploader(
                 when (it) {
                     Granted -> job = scope.launchUpload(onFailure)
                     NotGranted -> source.clear()
-                    Pending -> { /* No-op */ }
+                    Pending -> Unit // No-op
                 }
             }
             .launchIn(scope)
