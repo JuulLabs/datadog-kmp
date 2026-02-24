@@ -2,7 +2,6 @@ package com.juul.datadog.ktor
 
 import com.github.michaelbull.result.Result
 import com.github.michaelbull.result.map
-import com.juul.datadog.Site
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.call.body
@@ -24,18 +23,18 @@ import kotlinx.serialization.json.JsonObject
 private const val LOGS_URI = "api/v2/logs"
 
 public fun <T : HttpClientEngineConfig> RawUploader(
-    uploaderConfig: Configuration.Rest,
+    endpointConfig: Configuration.Endpoint,
     engine: HttpClientEngineFactory<T>,
     httpConfig: HttpClientConfig<T>.() -> Unit = {},
 ): RawUploader = RawUploader(
-    HttpClient(engine) { configure(uploaderConfig.site, uploaderConfig.apiKey, httpConfig) },
+    HttpClient(engine) { configure(endpointConfig, httpConfig) },
 )
 
 public fun RawUploader(
-    uploaderConfig: Configuration.Rest,
+    endpointConfig: Configuration.Endpoint,
     httpConfig: HttpClientConfig<*>.() -> Unit = {},
 ): RawUploader = RawUploader(
-    HttpClient { configure(uploaderConfig.site, uploaderConfig.apiKey, httpConfig) },
+    HttpClient { configure(endpointConfig, httpConfig) },
 )
 
 public class RawUploader internal constructor(
@@ -55,8 +54,7 @@ private suspend inline fun <reified T> Result<HttpResponse, Throwable>.body(): R
     map { it.body() }
 
 private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.configure(
-    site: Site,
-    apiKey: String,
+    endpointConfig: Configuration.Endpoint,
     config: HttpClientConfig<T>.() -> Unit,
 ) {
     apply(config)
@@ -66,8 +64,18 @@ private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.configure(
     }
 
     defaultRequest {
-        host = site.logHost
-        header("DD-API-KEY", apiKey)
+        host = when (endpointConfig) {
+            is Configuration.Endpoint.Rest -> endpointConfig.site.logHost
+            is Configuration.Endpoint.BrowserIntake -> endpointConfig.site.browserIntakeHost
+        }
+
+        if (endpointConfig is Configuration.Endpoint.Rest) {
+            header("DD-API-KEY", endpointConfig.apiKey)
+        } else if (endpointConfig is Configuration.Endpoint.BrowserIntake) {
+            this.url {
+                this.parameters.append("dd-api-key", endpointConfig.clientToken)
+            }
+        }
         contentType(ContentType.Application.Json)
         this.url { protocol = URLProtocol.HTTPS }
     }
