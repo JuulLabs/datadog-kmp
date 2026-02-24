@@ -1,11 +1,11 @@
 package com.juul.datadog
 
-import cocoapods.DatadogObjc.DDConfiguration
-import cocoapods.DatadogObjc.DDDatadog
-import cocoapods.DatadogObjc.DDLogs
-import cocoapods.DatadogObjc.DDLogsConfiguration
-import cocoapods.DatadogObjc.DDSite
-import cocoapods.DatadogObjc.DDTrackingConsent
+import cocoapods.DatadogCore.DDConfiguration
+import cocoapods.DatadogCore.DDDatadog
+import cocoapods.DatadogCore.DDSite
+import cocoapods.DatadogCore.DDTrackingConsent
+import cocoapods.DatadogLogs.DDLogs
+import cocoapods.DatadogLogs.DDLogsConfiguration
 
 public actual class DatadogInitializer actual constructor(
     private val configuration: Configuration,
