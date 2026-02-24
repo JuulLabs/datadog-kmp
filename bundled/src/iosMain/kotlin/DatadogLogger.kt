@@ -1,14 +1,14 @@
 package com.juul.datadog
 
-import cocoapods.DatadogObjc.DDLogLevel
-import cocoapods.DatadogObjc.DDLogLevelCritical
-import cocoapods.DatadogObjc.DDLogLevelDebug
-import cocoapods.DatadogObjc.DDLogLevelError
-import cocoapods.DatadogObjc.DDLogLevelInfo
-import cocoapods.DatadogObjc.DDLogLevelNotice
-import cocoapods.DatadogObjc.DDLogLevelWarn
-import cocoapods.DatadogObjc.DDLogger
-import cocoapods.DatadogObjc.DDLoggerConfiguration
+import cocoapods.DatadogLogs.DDLogLevel
+import cocoapods.DatadogLogs.DDLogLevelCritical
+import cocoapods.DatadogLogs.DDLogLevelDebug
+import cocoapods.DatadogLogs.DDLogLevelError
+import cocoapods.DatadogLogs.DDLogLevelInfo
+import cocoapods.DatadogLogs.DDLogLevelNotice
+import cocoapods.DatadogLogs.DDLogLevelWarn
+import cocoapods.DatadogLogs.DDLogger
+import cocoapods.DatadogLogs.DDLoggerConfiguration
 import com.juul.datadog.Logger.Level.Assert
 import com.juul.datadog.Logger.Level.Debug
 import com.juul.datadog.Logger.Level.Error
