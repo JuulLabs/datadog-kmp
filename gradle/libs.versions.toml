@@ -21,7 +21,7 @@ result = { module = "com.michael-bull.kotlin-result:kotlin-result", version = "2
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 
 [plugins]
-android-library = { id = "com.android.library", version = "8.13.0" }
+android-library = { id = "com.android.library", version = "8.13.2" }
 atomicfu = { id = "org.jetbrains.kotlinx.atomicfu", version.ref = "atomicfu" }
 api = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.18.1" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "2.3.10" }
