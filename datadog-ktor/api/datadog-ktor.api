@@ -1,3 +1,8 @@
+public abstract interface class com/juul/datadog/ktor/BatchUploader {
+	public abstract fun launchIn (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;)V
+	public abstract fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
+}
+
 public final class com/juul/datadog/ktor/Configuration {
 	public fun <init> (Lcom/juul/datadog/ktor/Configuration$Endpoint;Lcom/juul/datadog/ktor/Configuration$Log;)V
 	public synthetic fun <init> (Lcom/juul/datadog/ktor/Configuration$Endpoint;Lcom/juul/datadog/ktor/Configuration$Log;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -59,11 +64,11 @@ public final class com/juul/datadog/ktor/Configuration$Log {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/juul/datadog/ktor/RawBatchUploader {
+public final class com/juul/datadog/ktor/RawBatchUploader : com/juul/datadog/ktor/BatchUploader {
 	public synthetic fun <init> (Lcom/juul/datadog/RawSource;Lcom/juul/datadog/ktor/RawUploader;JIILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Lcom/juul/datadog/RawSource;Lcom/juul/datadog/ktor/RawUploader;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun launchIn (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;)V
-	public final fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
+	public fun launchIn (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;)V
+	public fun setTrackingConsent (Lcom/juul/datadog/TrackingConsent;)V
 }
 
 public final class com/juul/datadog/ktor/RawLogger : com/juul/datadog/ktor/RestLogger {

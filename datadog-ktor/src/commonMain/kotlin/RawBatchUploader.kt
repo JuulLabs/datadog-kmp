@@ -23,15 +23,15 @@ public class RawBatchUploader(
     private val uploader: RawUploader,
     private val uploadInterval: Duration = 5.seconds,
     private val batchSize: Int = 100,
-) {
+) : BatchUploader {
 
     private val state = MutableStateFlow<TrackingConsent>(Pending)
 
-    public fun setTrackingConsent(trackingConsent: TrackingConsent) {
+    public override fun setTrackingConsent(trackingConsent: TrackingConsent) {
         state.value = trackingConsent
     }
 
-    public fun launchIn(scope: CoroutineScope, onFailure: (Throwable) -> Unit) {
+    public override fun launchIn(scope: CoroutineScope, onFailure: (Throwable) -> Unit) {
         var job: Job? = null
         state
             .onEach {
