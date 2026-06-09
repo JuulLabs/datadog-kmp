@@ -7,7 +7,7 @@ options:
 packages:
   dd-sdk-ios:
     url: https://github.com/Datadog/dd-sdk-ios
-    version: 2.0.0
+    version: 3.12.0
   AnyCodable:
     url: https://github.com/Flight-School/AnyCodable
     version: 0.6.7
