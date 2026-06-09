@@ -6,7 +6,7 @@ android-target = "37"
 androidx-compose = "1.9.4"
 datadog-kmp = "0.6.0"
 jvm-toolchain = "11"
-kotlin = "2.2.21"
+kotlin = "2.4.0"
 
 [libraries]
 compose-activity = { module = "androidx.activity:activity-compose", version = "1.11.0" }
