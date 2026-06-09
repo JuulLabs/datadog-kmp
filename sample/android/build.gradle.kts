@@ -1,23 +1,7 @@
 plugins {
-    // Android plugin must be before multiplatform plugin until https://youtrack.jetbrains.com/issue/KT-34038 is fixed.
     alias(libs.plugins.android.application)
-    kotlin("multiplatform")
     alias(libs.plugins.kotlinter)
     alias(libs.plugins.compose)
-}
-
-kotlin {
-    explicitApi()
-    jvmToolchain(libs.versions.jvm.toolchain.get().toInt())
-
-    androidTarget()
-
-    sourceSets {
-        androidMain.dependencies {
-            implementation(projects.library)
-            implementation(libs.bundles.compose)
-        }
-    }
 }
 
 android {
@@ -33,4 +17,9 @@ android {
         disable += listOf("AndroidGradlePluginVersion", "GradleDependency", "MissingApplicationIcon")
     }
     buildFeatures.compose = true
+}
+
+dependencies {
+    implementation(projects.library)
+    implementation(libs.bundles.compose)
 }

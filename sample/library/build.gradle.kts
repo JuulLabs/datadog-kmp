@@ -3,9 +3,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
-    // Android plugin must be before multiplatform plugin until https://youtrack.jetbrains.com/issue/KT-34038 is fixed.
-    alias(libs.plugins.android.library)
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.swiftpackage)
     alias(libs.plugins.kotlinter)
     `maven-publish`
@@ -29,7 +28,15 @@ kotlin {
      * '-- ios
      */
 
-    androidTarget().publishLibraryVariants("debug", "release")
+    android {
+        namespace = "com.juul.datadog.sample"
+        compileSdk = libs.versions.android.compile.get().toInt()
+        minSdk = libs.versions.android.min.get().toInt()
+        lint {
+            abortOnError = true
+            warningsAsErrors = true
+        }
+    }
     iosArm64()
     iosSimulatorArm64()
     js().browser()
@@ -106,16 +113,6 @@ multiplatformSwiftPackage {
     zipFileName("sample-library")
 }
 
-android {
-    compileSdk = libs.versions.android.compile.get().toInt()
-    defaultConfig.minSdk = libs.versions.android.min.get().toInt()
-    namespace = "com.juul.datadog.sample"
-    lint {
-        abortOnError = true
-        warningsAsErrors = true
-    }
-}
-
 tasks.register("datadogClientTokens") {
     description = "Writes Datadog client tokens to Kotlin source code for use in the project"
     group = "Build"
@@ -151,9 +148,4 @@ tasks.withType<KotlinCompilationTask<*>> {
 
 tasks.withType<Sync> {
     dependsOn("datadogClientTokens")
-}
-
-tasks.named("preBuild") {
-    dependsOn("datadogClientTokens")
-    shouldRunAfter("clean")
 }
