@@ -1,11 +1,11 @@
 [versions]
 android-compile = "36"
 android-min = "21"
-atomicfu = "0.32.1"
-datadog-multiplatform = "1.5.0"
+atomicfu = "0.33.0"
+datadog-multiplatform = "1.6.0"
 datadog-npm = "6.28.0" # https://www.npmjs.com/package/@datadog/browser-logs
 jvm-toolchain = "11"
-ktor = "3.4.3"
+ktor = "3.5.0"
 serialization = "1.11.0"
 
 [libraries]
