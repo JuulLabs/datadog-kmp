@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.kotlinter)
     alias(libs.plugins.maven.publish)
     kotlin("multiplatform")
@@ -10,7 +10,18 @@ kotlin {
     jvmToolchain(libs.versions.jvm.toolchain.get().toInt())
 
     // Platforms supported by https://github.com/DataDog/dd-sdk-kotlin-multiplatform:
-    androidTarget().publishAllLibraryVariants()
+    android {
+        namespace = "com.juul.datadog.bundled"
+        compileSdk = libs.versions.android.compile.get().toInt()
+        minSdk = libs.versions.android.min.get().toInt()
+
+        lint {
+            abortOnError = true
+            warningsAsErrors = true
+            disable += "AndroidGradlePluginVersion"
+            disable += "GradleDependency"
+        }
+    }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -60,19 +71,5 @@ kotlin {
         jsTest.dependencies {
             implementation(kotlin("test-js"))
         }
-    }
-}
-
-android {
-    compileSdk = libs.versions.android.compile.get().toInt()
-    defaultConfig.minSdk = libs.versions.android.min.get().toInt()
-
-    namespace = "com.juul.datadog.bundled"
-
-    lint {
-        abortOnError = true
-        warningsAsErrors = true
-        disable += "AndroidGradlePluginVersion"
-        disable += "GradleDependency"
     }
 }
