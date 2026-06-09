@@ -1,9 +1,9 @@
 [versions]
 agp = "9.2.1"
 android-compile = "37"
-android-min = "21"
+android-min = "23"
 android-target = "37"
-androidx-compose = "1.9.4"
+androidx-compose = "1.11.2"
 datadog-kmp = "0.6.0"
 jvm-toolchain = "11"
 kotlin = "2.4.0"
