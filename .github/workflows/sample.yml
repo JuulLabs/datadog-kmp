@@ -1,4 +1,4 @@
-name: CI
+name: Sample
 on:
   pull_request:
   # Trigger on merges to `main` to allow `gradle/gradle-build-action` runs to write their caches.
@@ -6,6 +6,10 @@ on:
   push:
     branches:
       - main
+
+defaults:
+  run:
+    working-directory: sample
 
 jobs:
   build:
@@ -22,7 +26,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v6
 
       - name: local.properties
-        working-directory: library
+        working-directory: sample/library
         run: |
           cat <<TEXTFILE > local.properties
           datadog.clientToken.android=noop
@@ -38,6 +42,6 @@ jobs:
       - run: ./gradlew generateXcodeProject
 
       - run: xcodebuild -scheme Sample build CODE_SIGN_IDENTITY="" CODE_SIGNING_ALLOWED=NO
-        working-directory: ios
+        working-directory: sample/ios
 
       - run: ./gradlew check

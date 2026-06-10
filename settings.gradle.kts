@@ -10,6 +10,8 @@ pluginManagement {
     }
 }
 
+includeBuild("sample")
+
 include(
     ":bundled",
     ":datadog",
