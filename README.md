@@ -48,4 +48,4 @@ limitations under the License.
 
 
 [Datadog]: https://www.datadoghq.com/
-[Datadog KMP sample app]: https://github.com/JuulLabs/datadog-kmp-sample
+[Datadog KMP sample app]: sample/
