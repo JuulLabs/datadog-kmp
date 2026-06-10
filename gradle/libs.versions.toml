@@ -1,16 +1,26 @@
 [versions]
-android-compile = "36"
-android-min = "21"
+agp = "9.2.1"
+android-compile = "37"
+android-min = "23"
+android-target = "37"
+androidx-compose = "1.11.2"
 atomicfu = "0.33.0"
+datadog-kmp = "0.6.1"
 datadog-multiplatform = "1.6.0"
 datadog-npm = "6.28.0" # https://www.npmjs.com/package/@datadog/browser-logs
 jvm-toolchain = "11"
+kotlin = "2.4.0"
 ktor = "3.5.0"
 serialization = "1.11.0"
 
 [libraries]
 androidx-startup = { module = "androidx.startup:startup-runtime", version = "1.2.0" }
 atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfu" }
+compose-activity = { module = "androidx.activity:activity-compose", version = "1.13.0" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
+datadog-kmp = { module = "com.juul.datadog:datadog", version.ref = "datadog-kmp" }
+datadog-kmp-bundled = { module = "com.juul.datadog:bundled", version.ref = "datadog-kmp" }
 datadog-multiplatform-logs = { module = "com.datadoghq:dd-sdk-kotlin-multiplatform-logs", version.ref = "datadog-multiplatform" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.5.0" }
 ktor-client-content = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
@@ -20,10 +30,20 @@ nserrorkt = { module = "com.rickclephas.kmp:nserror-kt", version = "0.2.0" }
 result = { module = "com.michael-bull.kotlin-result:kotlin-result", version = "2.3.1" }
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 
+[bundles]
+compose = [
+    "compose-activity",
+    "compose-material",
+    "compose-ui",
+]
+
 [plugins]
-android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version = "9.2.1" }
-atomicfu = { id = "org.jetbrains.kotlinx.atomicfu", version.ref = "atomicfu" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 api = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.18.1" }
-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version = "2.4.0" }
+atomicfu = { id = "org.jetbrains.kotlinx.atomicfu", version.ref = "atomicfu" }
+compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinter = { id = "org.jmailen.kotlinter", version = "5.5.0" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.36.0" }
+swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version = "2.3.0" }
