@@ -22,7 +22,7 @@ compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compos
 datadog-kmp = { module = "com.juul.datadog:datadog", version.ref = "datadog-kmp" }
 datadog-kmp-bundled = { module = "com.juul.datadog:bundled", version.ref = "datadog-kmp" }
 datadog-multiplatform-logs = { module = "com.datadoghq:dd-sdk-kotlin-multiplatform-logs", version.ref = "datadog-multiplatform" }
-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.4.0" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.5.0" }
 ktor-client-content = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
