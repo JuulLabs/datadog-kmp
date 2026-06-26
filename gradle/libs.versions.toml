@@ -10,7 +10,7 @@ datadog-multiplatform = "1.7.0"
 datadog-npm = "6.28.0" # https://www.npmjs.com/package/@datadog/browser-logs
 jvm-toolchain = "11"
 kotlin = "2.4.0"
-ktor = "3.5.0"
+ktor = "3.5.1"
 serialization = "1.11.0"
 
 [libraries]
