@@ -40,7 +40,7 @@ compose = [
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
-api = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.18.1" }
+api = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.18.2" }
 atomicfu = { id = "org.jetbrains.kotlinx.atomicfu", version.ref = "atomicfu" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
