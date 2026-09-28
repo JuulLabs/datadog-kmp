@@ -19,6 +19,8 @@ pluginManagement {
     }
 }
 
+includeBuild("..")
+
 include(
     ":android",
     ":ios",
