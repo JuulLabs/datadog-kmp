@@ -5,7 +5,6 @@ android-min = "23"
 android-target = "37"
 androidx-compose = "1.12.1"
 atomicfu = "0.33.0"
-datadog-kmp = "0.6.1"
 datadog-multiplatform = "1.8.0"
 datadog-npm = "6.28.0" # https://www.npmjs.com/package/@datadog/browser-logs
 jvm-toolchain = "11"
@@ -19,8 +18,8 @@ atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfu"
 compose-activity = { module = "androidx.activity:activity-compose", version = "1.13.0" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
-datadog-kmp = { module = "com.juul.datadog:datadog", version.ref = "datadog-kmp" }
-datadog-kmp-bundled = { module = "com.juul.datadog:bundled", version.ref = "datadog-kmp" }
+datadog-kmp = { module = "com.juul.datadog:datadog" }
+datadog-kmp-bundled = { module = "com.juul.datadog:bundled" }
 datadog-multiplatform-logs = { module = "com.datadoghq:dd-sdk-kotlin-multiplatform-logs", version.ref = "datadog-multiplatform" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.5.2" }
 ktor-client-content = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }

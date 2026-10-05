@@ -13,6 +13,8 @@ plugins {
 }
 
 allprojects {
+    group = "com.juul.datadog"
+
     repositories {
         mavenLocal()
         mavenCentral()
