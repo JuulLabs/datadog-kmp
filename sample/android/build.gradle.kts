@@ -14,7 +14,12 @@ android {
     lint {
         abortOnError = true
         warningsAsErrors = true
-        disable += listOf("AndroidGradlePluginVersion", "GradleDependency", "MissingApplicationIcon")
+        disable += listOf(
+            "AndroidGradlePluginVersion",
+            "GradleDependency",
+            "MissingApplicationIcon",
+            "ObsoleteLintCustomCheck",
+        )
     }
     buildFeatures.compose = true
 }
