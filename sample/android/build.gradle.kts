@@ -5,7 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk = libs.versions.android.compile.get().toInt()
+    compileSdk {
+        version = release(libs.versions.android.compile.major.get().toInt()) {
+            minorApiLevel = libs.versions.android.compile.minor.get().toInt()
+        }
+    }
     defaultConfig {
         minSdk = libs.versions.android.min.get().toInt()
         targetSdk = libs.versions.android.target.get().toInt()
