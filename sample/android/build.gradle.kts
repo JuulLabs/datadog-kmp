@@ -11,7 +11,7 @@ android {
         }
     }
     defaultConfig {
-        minSdk = libs.versions.android.min.get().toInt()
+        minSdk = libs.versions.sample.android.min.get().toInt()
         targetSdk = libs.versions.android.target.get().toInt()
     }
     namespace = "com.juul.datadog.sample.android"
