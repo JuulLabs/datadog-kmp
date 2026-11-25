@@ -35,7 +35,7 @@ kotlin {
                 minorApiLevel = libs.versions.android.compile.minor.get().toInt()
             }
         }
-        minSdk = libs.versions.android.min.get().toInt()
+        minSdk = libs.versions.sample.android.min.get().toInt()
         lint {
             abortOnError = true
             warningsAsErrors = true
